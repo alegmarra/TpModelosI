@@ -1,0 +1,306 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definici\'on del tipo de documento.                                           %
+% Posibles tipos de papel: a4paper, letterpaper, legalpapper                  %
+% Posibles tama�os de letra: 10pt, 11pt, 12pt                                 %
+% Posibles clases de documentos: article, report, book, slides                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,10pt]{article}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Los paquetes permiten ampliar las capacidades de LaTeX.                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Paquete para inclusi\'on de gr\'aficos.
+\usepackage{graphicx}
+
+\usepackage{enumerate}
+
+% Paquete para definir la codificaci\'on del conjunto de caracteres usado
+% (latin1 es ISO 8859-1).
+\usepackage[latin1]{inputenc}
+
+% Paquete para definir el idioma usado.
+\usepackage[spanish]{babel}
+
+\usepackage{multirow} 
+
+% Paquete para f\'ormulas matem\'aticas
+\usepackage{amsmath}
+
+% Espacio luego de titulos
+\usepackage{titlesec}
+
+\newcommand{\BigO}[1]{\ensuremath{\operatorname{O}\bigl(#1\bigr)}}
+
+%\titleformat{hcommandi}[hshapei]{hformati}{hlabeli}{hsepi}{hbefore-codei}[hafter-codei]
+\titlespacing\subsection{5pt}{12pt plus 4pt minus 2pt}{12pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{10pt}{0pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
+
+
+
+%\usepackage{multicolumn} 
+
+% T\'itulo principal del documento.
+\title{		\textbf{Trabajo pr\'actico}}
+
+% Informaci\'on sobre los autores.
+\author{	Alejandro Garc\'ia Marra, \textit{Padr\'on Nro. 91.516}                     \\
+            \texttt{ alemarra@gmail.com }                                              \\
+            Sebasti\'an Javier Bogado, \textit{Padr\'on Nro. 91.707}                     \\
+            \texttt{ sebastian.j.bogado@gmail.com }                                              \\
+            \normalsize{1er. Cuatrimestre de 2013}                       \\
+            \normalsize{71.14 Modelos y Optimization I}                             \\
+            \normalsize{Facultad de Ingenier\'ia, Universidad de Buenos Aires}            \\
+       }
+\date{}
+
+
+
+\begin{document}
+
+% Inserta el t\'itulo.
+\maketitle
+
+% Quita el n\'umero en la primer p\'agina.
+\thispagestyle{empty}
+
+
+\newpage
+\section{Ejercicio Principal}
+
+\subsection{An\'alisis del caso}
+
+Una refiner\'ia tiene una producci\'on diaria de distintos tipos de combustibles y aceites a partir de petr\'oleo crudo de dos tipos distintos. A lo largo de los distintos procesos de destilaci\'on se consiguen los diversos productos. Cuanto m\'as refinado es el producto, mas valioso es para su venta.
+
+\subsection{Objetivo}
+Determinar la cantidad de barriles de los distintos tipos de combustible, fueloil y lubricante a producir, as\'i como la composici\'on de los combustibles para maximizar las utilidades de la refiner\'ia por d\'ia.
+\vspace{10mm}
+
+\subsection{Hip\'otesis y Aclaraciones}
+
+\begin{itemize}
+ \item {Precio constante en el d\'ia}
+ \item {No tengo stock inicial}
+ \item {Se vende todo lo producido y, por ende, se puede hablar de fracciones de barril}
+ \item {Se dispone de dinero suficiente para comprar toda la materia prima necesaria}
+ \item {Puedo comprar cantidades fraccionarias de la materia prima}
+ \item {Las m\'aquinas no se rompen ni los empleados se rebelan}
+ \item {Al hablar de ``barriles'' para refererirse a cantidad, un barril de un producto es igual al de otro}
+ \item {No hay perdidas de producci\'on ni transporte, excepto las indicadas en la destilaci\'on}
+ \item {En las mezclas no se agrega nada que no est\'e mencionado, entonces las proporciones deben sumar 1}
+ \item {El centro de destilaci\'on puede alternar entre crudo de tipo 1 y tipo 2 sin p\'erdidas de tiempo o costos adicionales. Lo mismo aplica para el centro de reformado y craqueo respecto de sus distintas entradas}
+ \item {A menos que se indique lo contrario, puede no producirse alguno de los productos finales}
+ 
+ 
+ 
+\end{itemize}
+	
+\newpage
+
+\subsection{Variables}
+
+
+\subsubsection{Compra}
+\vspace{5mm}
+
+$C1 = $ Barriles de Crudo 1 por d\'ia \\
+
+$C2 = $ Barriles de Crudo 2 por d\'ia \\
+\vspace{2mm}
+
+\subsubsection{Destilado}
+\vspace{5mm}
+
+$NL = $ Barriles de Nafta Liviana por d\'ia \\
+
+$NM = $ Barriles de Nafta Mediana por d\'ia \\
+
+$NP = $ Barriles de Nafta Pesada por d\'ia \\
+
+$AL = $ Barriles de Aceite Liviano por d\'ia \\
+
+$AP = $ Barriles de Aceite Pesado por d\'ia \\
+
+$RDES = $ Barriles de Residuo Destilado por d\'ia \\
+\vspace{2mm}
+
+\subsubsection{Reformado}
+\vspace{5mm}
+
+$GREF = $ Barriles de Gasolina Reformada por d\'ia \\
+\vspace{2mm}
+
+\subsubsection{Craqueo}
+\vspace{5mm}
+
+$GCRA = $ Barriles de Gasolina Craqueada por d\'ia \\
+
+$ACRA = $ Barriles de Aceite Craqueado por d\'ia \\
+\vspace{2mm}
+
+\subsubsection{Ventas}
+\vspace{5mm}
+
+$PR = $ Barriles de Combustible Premium por d\'ia \\
+
+$SU = $ Barriles de Combustible Super por d\'ia \\
+
+$AV = $ Barriles de Combustible para Aviones por d\'ia \\
+
+$FO = $ Barriles de Fueloil por d\'ia \\
+
+$LU = $ Barriles de Lubricante por d\'ia \\
+\vspace{2mm}
+
+\subsubsection{Otros Datos}
+Aclaración: las siguientes son constantes
+\begin{align*}
+OCTNL &= 100 \ Octanos	& OCTREF &= 125 \ Octanos \\
+OCTNM &= 90 \ \ Octanos	& OCTGCRA &= 115 \ Octanos \\
+OCTNP &= 80 \ \ Octanos	& \\
+\\
+PRESAL &= 1 \ Kg/cm^{2} & PRESACRA &= 1.5 \ Kg/cm^{2} \\
+PRESAP &= 0.6 \ Kg/cm^{2} & PRESRDES &= 0.05 \ Kg/cm^{2}
+\end{align*}
+
+\subsection{Ecuaciones}
+
+\subsubsection{Destilado}
+
+\begin{align*}
+ NL &=   0,1 \ C1 \  + 0,15 \ C2   &   &= NL^{REF} + NL^{PR} + NL^{SU} \\
+ NM &=   0,2 \ C1 \  + 0,25 \ C2   &   &= NM^{REF} + NM^{PR} + NM^{SU} \\
+ NP &=   0,2 \ C1 \  + 0,18 \ C2   &   &= NP^{REF} + NP^{PR} + NP^{SU} \\
+ AL &=   0,2 \ C1  		    &   &= AL^{AV} + AL^{CRA} + AL^{FO}\\
+ AP &=   0,13 \ C1 \  + 0,12 \ C2  &   &= AP^{AV} + AP^{CRA} + AP^{FO} \\
+ RDES &= 0,13 \ C1 \  + 0,12 \ C2  &  
+\end{align*}
+
+\subsubsection{Reformado}
+
+\begin{align*}
+ REF &=  0,6 \ NL^{REF} \  + 0,52 \ NM^{REF} + 0,45 \ NP^{REF} 
+\end{align*}
+
+\subsubsection{Craqueo}
+
+\begin{align*}
+ GCRA &=  0.28 \ AL^{CRA} \  + 0.2 \ AP^{CRA}  & &= GCRA^{PR} + GCRA^{SU}\\
+ ACRA &=  0.68 \ AL^{CRA} \  + 0.75 \ AP^{CRA} & &= ACRA^{AV} + ACRA^{FO} \\
+ \end{align*}
+
+\subsubsection{Ventas}
+ 
+\begin{align*}
+ PR &=  NL^{PR} + NM^{PR} + NP^{PR}+ GRCA^{PR} + REF^{PR} \\
+ SU &=  NL^{SU} + NM^{SU} + NP^{SU}+ GRCA^{SU} + REF^{SU} \\
+ 18 \ FO &=  10 \ AL^{FO} + 3 \ AP^{FO} + 4\ ACRA^{FO}+ 1\ RDES^{FO} \\
+ AV &=  AL^{AV} + AP^{AV} + ACRA^{AV} + RDES^{AV} \\
+ LU &=  RDES^{LU} 
+ \end{align*}
+
+\subsubsection{Funcional}
+
+\begin{align*}
+ Z_{max} &= 700 \ \text{\$/B} \cdot \ PR + 600\ \text{\$/B} \cdot \ SU + 400\ \text{\$/B} \cdot \ AV + 350\ \text{\$/B} \cdot \ FO + 150\ \text{\$/B} \cdot \ LU \\
+\end{align*}
+
+\subsection{Restricciones}
+
+\begin{align*}
+ C1 &\leq 20000 \ B/d \\
+ C2 &\leq 30000 \ B/d \\
+ C1 + C2 &\leq 4500 \ \ B/d \\
+ \\
+ NL^{REF} + NM^{REF} + NP^{REF} &\leq 1000 \ B/d \\
+ AL^{CRA} + AP^{CRA} &\leq 8000 \ B/d \\
+ \\
+  500 B/d \ \leq\ &LU \leq \ 1000 \ B/d \\
+ \\
+PR &\geq 0.4 \ SU 
+ \end{align*}
+ \begin{align*}
+PR \cdot 98 \ Oct \ &\geq OCTNL \cdot NL^{PR} + OCTNM \cdot NM^{PR} + OCTNP \cdot NP^{PR} +  \\
+			& \ \ \ OCTCRA \cdot GCRA^{PR} + OCTREF \cdot REF^{PR}\\
+\\
+SU \cdot 95 \ Oct \ &\leq OCTNL \cdot NL^{SU} + OCTNM \cdot NM^{SU} + \\
+& \ \ \ OCTNP \cdot NP^{SU} + OCTCRA \cdot GCRA^{SU} + OCTREF \cdot REF^{SU} \ \leq SU \cdot 97,99 \ Oct  \\
+\\
+AV \cdot 1 \ Kg/cm^{2} &\geq PRESAL \cdot AL^{AV} + PRESAP \cdot AP^{AV} + \\
+				& \ \ \ PRESACRA \cdot ACRA^{AV} + PRESRDES \cdot RDES^{AV}\\
+\end{align*}
+
+\newpage
+
+\section{Ejercicio Complementario}
+
+\subsection{An\'alisis del caso}
+
+Pepe desea fabricar sidra de manera artesanal para luego venderla a una cadena re locales gourmet. Para esto, cuenta con tres tipos distintos de manzanas como materia prima, a partir de las cuales se pueden obtener tanto sidra natural como sidra dulce. La diferencia entre una y otra surge de cambios en la proporci\'on de las diferentes manzanas utilizadas. 
+
+\subsection{Objetivo}
+
+Determinar la cantidad de sidra de uno y otro tipo a producir de forma tal de maximizar las ganancias que obtiene Pepe en un per\'iodo. (En este caso utilizaremos un per\'iodo de una semana, ya que lo consideramos razonable.)
+
+\subsection{Hip\'otesis}
+\begin{itemize}
+  \item{Dispone del dinero para comprar toda la materia prima necesaria}
+ \item{Dispone de tiempo suficiente para realizar toda la producci\'on indicada}
+ \item{No tiene stock previo}
+ \item{La cadena de locales comprar\'a toda la producc\'on obtenida}
+ \item{No hay p\'erdidas de materia prima en el proceso ni en el transporte}
+ \item{No hay p\'erdidas de producci\'on}
+ \item{Los precios son constantes dentro del per\'iodo.}
+\end{itemize}
+ 
+\subsection{Variables}
+
+ \subsubsection{Compra}
+\vspace{2mm}
+ $ R = $ Kg/Sem de Manzanas Rojas
+ 
+ $ V = $ Kg/Sem de Manzanas Verdes
+ 
+ $ A = $ Kg/Sem de Manzanas Amarillas
+\vspace{2mm}
+
+ \subsubsection{Venta}
+\vspace{2mm}
+ $ SN = $ Litros/Sem de Sidra Natural
+ 
+ $ SD = $ Litros/Sem de Sidra Dulce
+ \vspace{2mm}
+ 
+ \subsubsection{Funcional}
+ \vspace{5mm}
+ $ING =$ Ingresos por ventas semanales
+ 
+ $Z \xrightarrow{}$ MAX $ING$
+ \vspace{2mm}
+ 
+\subsection{Ecuaciones}
+\begin{align*}
+ SN &= 2\ L/Kg \cdot \ V + 2 \ L/Kg \cdot \ A + 1 \ L/Kg \cdot \ R \\
+ SD &=  1 \ L/Kg \cdot \ V + 1 \ L/Kg \cdot \ R \\
+ \\
+ Z &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD 
+\end{align*}
+
+\subsection{Restricciones}
+\begin{align*}
+ V &\leq 15 Kg/Sem\\
+ R &\leq 60 Kg/Sem\\
+ A &\leq 15 Kg/Sem\\
+ \\
+ SD &\geq 10 L/Sem
+\end{align*}
+
+
+ 
+ 
+
+
+
+
+\end{document}

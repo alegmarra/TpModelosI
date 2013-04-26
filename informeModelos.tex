@@ -1,0 +1,457 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definici\'on del tipo de documento.                                           %
+% Posibles tipos de papel: a4paper, letterpaper, legalpapper                  %
+% Posibles tama�os de letra: 10pt, 11pt, 12pt                                 %
+% Posibles clases de documentos: article, report, book, slides                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,10pt]{article}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Los paquetes permiten ampliar las capacidades de LaTeX.                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Paquete para inclusi\'on de gr\'aficos.
+\usepackage{graphicx}
+
+\usepackage{enumerate}
+
+% Paquete para definir la codificaci\'on del conjunto de caracteres usado
+% (latin1 es ISO 8859-1).
+\usepackage[latin1]{inputenc}
+
+% Paquete para definir el idioma usado.
+\usepackage[spanish]{babel}
+
+\usepackage{multirow} 
+
+% Paquete para f\'ormulas matem\'aticas
+\usepackage{amsmath}
+
+% Espacio luego de titulos
+\usepackage{titlesec}
+
+\newcommand{\BigO}[1]{\ensuremath{\operatorname{O}\bigl(#1\bigr)}}
+
+%\titleformat{hcommandi}[hshapei]{hformati}{hlabeli}{hsepi}{hbefore-codei}[hafter-codei]
+\titlespacing\subsection{5pt}{12pt plus 4pt minus 2pt}{12pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{10pt}{0pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\renewcommand{\headrulewidth}{0pt} % no line in header area
+\fancyfoot{} % clear all footer fields
+\fancyfoot[LE,RO]{\thepage}           % page number in "outer" position of footer line
+\fancyfoot[RE,LO]{Entrega 2} % other info in "inner" position of footer line
+
+%\usepackage{multicolumn} 
+
+% T\'itulo principal del documento.
+\title{		\textbf{Trabajo pr\'actico}}
+
+% Informaci\'on sobre los autores.
+\author{	Alejandro Garc\'ia Marra, \textit{Padr\'on Nro. 91.516}                     \\
+            \texttt{ alemarra@gmail.com }                                              \\
+            Sebasti\'an Javier Bogado, \textit{Padr\'on Nro. 91.707}                     \\
+            \texttt{ sebastian.j.bogado@gmail.com }                                              \\
+            \normalsize{1er. Cuatrimestre de 2013}                       \\
+            \normalsize{71.14 Modelos y Optimization I}                             \\
+            \normalsize{Facultad de Ingenier\'ia, Universidad de Buenos Aires}            \\
+       }
+\date{}
+
+
+
+
+\begin{document}
+
+% Inserta el t\'itulo.
+\maketitle
+
+% Quita el n\'umero en la primer p\'agina.
+\thispagestyle{empty}
+
+
+\newpage
+\section{Ejercicio Principal}
+
+\subsection{An\'alisis del caso}
+
+CAMBIAR
+
+Una refiner\'ia tiene una producci\'on diaria de distintos tipos de combustibles y aceites a partir de petr\'oleo crudo de dos tipos distintos. A lo largo de los distintos procesos de destilaci\'on se consiguen los diversos productos. Cuanto m\'as refinado es el producto, mas valioso es para su venta.
+
+\subsection{Objetivo}
+Determinar la cantidad de barriles de los distintos tipos de combustible, fueloil y lubricante a producir, as\'i como la composici\'on de los combustibles para maximizar las utilidades de la refiner\'ia por d\'ia.
+\vspace{10mm}
+
+\subsection{Hip\'otesis y Aclaraciones}
+
+\begin{itemize}
+ \item {Precio constante en el d\'ia}
+ \item {No tengo stock inicial}
+ \item {Se vende todo lo producido y, por ende, se puede hablar de fracciones de barril}
+ \item {Se dispone de dinero suficiente para comprar toda la materia prima necesaria}
+ \item {Puedo comprar cantidades fraccionarias de la materia prima}
+ \item {Las m\'aquinas no se rompen ni los empleados se rebelan}
+ \item {Al hablar de ``barriles'' para refererirse a cantidad, un barril de un producto es igual al de otro}
+ \item {No hay perdidas de producci\'on ni transporte, excepto las indicadas en la destilaci\'on}
+ \item {En las mezclas no se agrega nada que no est\'e mencionado, entonces las proporciones deben sumar 1}
+ \item {El centro de destilaci\'on puede alternar entre crudo de tipo 1 y tipo 2 sin p\'erdidas de tiempo o costos adicionales. Lo mismo aplica para el centro de reformado y craqueo respecto de sus distintas entradas}
+ \item {A menos que se indique lo contrario, puede no producirse alguno de los productos finales}
+ 
+ 
+ 
+\end{itemize}
+	
+\newpage
+
+\subsection{Variables}
+
+
+\subsubsection{Compra}
+\vspace{5mm}
+
+$C1 = $ Barriles de Crudo 1 por d\'ia \\
+
+$C2 = $ Barriles de Crudo 2 por d\'ia \\
+\vspace{2mm}
+
+\subsubsection{Destilado}
+\vspace{5mm}
+
+$NL = $ Barriles de Nafta Liviana por d\'ia \\
+
+$NL^{REF} = $ Barriles de Nafta Liviana para Reformado por d\'ia \\
+
+$NL^{PR} = $ Barriles de Nafta Liviana para producir Premium por d\'ia \\
+
+$NL^{SU} = $ Barriles de Nafta Liviana para producir Super por d\'ia \\
+
+$NM = $ Barriles de Nafta Mediana por d\'ia \\
+
+$NM^{REF} = $ Barriles de Nafta Mediana para Reformado por d\'ia \\
+
+$NM^{PR} = $ Barriles de Nafta Mediana para producir Premium por d\'ia \\
+
+$NM^{SU} = $ Barriles de Nafta Mediana para producir Super por d\'ia \\
+
+$NP = $ Barriles de Nafta Pesada por d\'ia \\
+
+$NP^{REF} = $ Barriles de Nafta Pesada para Reformado por d\'ia \\
+
+$NP^{PR} = $ Barriles de Nafta Pesada para producir Premium por d\'ia \\
+
+$NP^{SU} = $ Barriles de Nafta Pesada para producir Super por d\'ia \\
+
+$AL = $ Barriles de Aceite Liviano por d\'ia \\
+
+$AL^{AV} = $ Barriles de Aceite Liviano para Aviones por d\'ia \\
+
+$AL^{GCRA} = $ Barriles de Aceite Liviano para Gasolina Craqueada por d\'ia \\
+
+$AL^{ACRA} = $ Barriles de Aceite Liviano para Aceite Craqueado por d\'ia \\
+
+$AL^{FO} = $ Barriles de Aceite Liviano para Fueloil por d\'ia \\
+
+$AP = $ Barriles de Aceite Mediano por d\'ia \\
+
+$AP^{AV} = $ Barriles de Aceite Pesado para Aviones por d\'ia \\
+
+$AP^{GCRA} = $ Barriles de Aceite Pesado para Gasolina Craqueada  por d\'ia \\
+
+$AP^{ACRA} = $ Barriles de Aceite Pesado para Aceite Craqueado por d\'ia \\
+
+$AP^{FO} = $ Barriles de Aceite Pesado para Fueloil por d\'ia \\
+
+$RDES = $ Barriles de Residuo Destilado por d\'ia \\
+
+$RDES^{AV} = $ Barriles de Residuo Destilado para Aviones por d\'ia \\
+
+$RDES^{LU} = $ Barriles de Residuo Destilado para Lubricante por d\'ia \\
+
+$RDES^{FO} = $ Barriles de Residuo Destilado para Fueloil por d\'ia \\
+\vspace{2mm}
+
+\subsubsection{Reformado}
+\vspace{5mm}
+
+$GREF = $ Barriles de Gasolina Reformada por d\'ia \\
+
+$GREF^{PR} = $ Barriles de Gasolina Reformada para nafta Premium por d\'ia \\
+
+$GREF^{SU} = $ Barriles de Gasolina Reformada para nafta Super por d\'ia \\
+\vspace{2mm}
+
+\subsubsection{Craqueo}
+\vspace{5mm}
+
+$GCRA = $ Barriles de Gasolina Craqueada por d\'ia \\
+
+$GCRA^{PR} = $ Barriles de Gasolina Craqueada para nafta Premium por d\'ia \\
+
+$GCRA^{SU} = $ Barriles de Gasolina Craqueada para nafta Super por d\'ia \\
+
+$ACRA = $ Barriles de Aceite Craqueado por d\'ia \\
+
+$ACRA^{AV} = $ Barriles de Aceite Craqueado para Aviones por d\'ia \\
+
+$ACRA^{FO} = $ Barriles de Aceite Craqueado para Fueloil por d\'ia \\
+\vspace{2mm}
+
+\subsubsection{Ventas}
+\vspace{5mm}
+
+$PR = $ Barriles de Combustible Premium por d\'ia \\
+
+$SU = $ Barriles de Combustible Super por d\'ia \\
+
+$AV = $ Barriles de Combustible para Aviones por d\'ia \\
+
+$FO = $ Barriles de Fueloil por d\'ia \\
+
+$LU = $ Barriles de Lubricante por d\'ia \\
+\vspace{2mm}
+
+\subsubsection{Constantes}
+\begin{align*}
+OCTNL &= 100 \ Octanos	& OCTGREF &= 125 \ Octanos \\
+OCTNM &= 90 \ \ Octanos	& OCTGCRA &= 115 \ Octanos \\
+OCTNP &= 80 \ \ Octanos	& \\
+\\
+PRESAL &= 1 \ Kg/cm^{2} & PRESACRA &= 1.5 \ Kg/cm^{2} \\
+PRESAP &= 0.6 \ Kg/cm^{2} & PRESRDES &= 0.05 \ Kg/cm^{2}
+\end{align*}
+
+\subsection{Ecuaciones}
+
+\subsubsection{Destilado}
+
+\begin{align*}
+ NL &=   0,1 \ C1 \  + 0,15 \ C2   &   &= NL^{REF} + NL^{PR} + NL^{SU} \\
+ NM &=   0,2 \ C1 \  + 0,25 \ C2   &   &= NM^{REF} + NM^{PR} + NM^{SU} \\
+ NP &=   0,2 \ C1 \  + 0,18 \ C2   &   &= NP^{REF} + NP^{PR} + NP^{SU} \\
+ AL &=   0,12 \ C1 \  + 0,08 \ C2  &   &= AL^{AV} + AL^{GCRA} + AL^{ACRA} + AL^{FO}\\
+ AP &=   0,1 \ C1 \		    &   &= AP^{AV} + AP^{GCRA} + AP^{ACRA} + AP^{FO} \\
+ RDES &= 0,13 \ C1 \  + 0,12 \ C2  &   &= RDES^{AV} + RDES^{LU} + RDES^{FO}\\ 
+\end{align*}
+
+\subsubsection{Reformado}
+
+\begin{align*}
+ GREF &=  0,6 \ NL^{REF} \  + 0,52 \ NM^{REF} + 0,45 \ NP^{REF} &= GREF^{PR} + GREF^{SU} \\
+\end{align*}
+
+\subsubsection{Craqueo}
+
+\begin{align*}
+ GCRA &=  0.28 \ AL^{GCRA} \  + 0.2 \ AP^{GCRA}  & &= GCRA^{PR} + GCRA^{SU}\\
+ ACRA &=  0.68 \ AL^{ACRA} \  + 0.75 \ AP^{ACRA} & &= ACRA^{AV} + ACRA^{FO} \\
+ \end{align*}
+
+\subsubsection{Ventas}
+ 
+\begin{align*}
+ PR &=  NL^{PR} + NM^{PR} + NP^{PR}+ GCRA^{PR} + GREF^{PR} \\
+ SU &=  NL^{SU} + NM^{SU} + NP^{SU}+ GCRA^{SU} + GREF^{SU} \\
+ \\
+ 1.8\ 	FO	&= \ AL^{FO}  \\
+ 6\ 	FO	&= \ AP^{FO}   \\
+ 4.5\ 	FO	&= \ ACRA^{FO} \\
+ 18\ 	FO 	&= \ RDES^{FO} \\
+ \\
+ AV &=  AL^{AV} + AP^{AV} + ACRA^{AV} + RDES^{AV} \\
+ LU &=  RDES^{LU} 
+ \end{align*}
+
+\subsubsection{Funcional}
+
+\begin{align*}
+ Z &= 700 \ \text{\$/B} \cdot \ PR + 600\ \text{\$/B} \cdot \ SU + 400\ \text{\$/B} \cdot \ AV + 350\ \text{\$/B} \cdot \ FO + 150\ \text{\$/B} \cdot \ LU \\
+\end{align*}
+
+\subsection{Restricciones}
+
+\begin{align*}
+ C1 &\leq 20000 \ B/d \\
+ C2 &\leq 30000 \ B/d \\
+ C1 + C2 &\leq 45000 \ \ B/d \\
+ \\
+ NL^{REF} + NM^{REF} + NP^{REF} &\leq 10000 \ B/d \\
+ AL^{GCRA} + AL^{ACRA} +  AP^{GCRA} + AP^{ACRA} &\leq 8000 \ B/d \\
+ \\
+  500 B/d \ \leq\ &LU \leq \ 1000 \ B/d \\
+ \\
+PR &\geq 0.4 \ SU 
+ \end{align*}
+ \begin{align*}
+PR \cdot 98 \ Oct \ &\leq OCTNL \cdot NL^{PR} + OCTNM \cdot NM^{PR} + OCTNP \cdot NP^{PR} +  \\
+			& \ \ \ OCTCRA \cdot GCRA^{PR} + OCTREF \cdot GREF^{PR}\\
+\\
+SU \cdot 95 \ Oct \ &\leq OCTNL \cdot NL^{SU} + OCTNM \cdot NM^{SU} + \\
+& \ \ \ OCTNP \cdot NP^{SU} + OCTCRA \cdot GCRA^{SU} + OCTREF \cdot GREF^{SU} \ \leq SU \cdot 97,99 \ Oct  \\
+\\
+AV \cdot 1 \ Kg/cm^{2} &\geq PRESAL \cdot AL^{AV} + PRESAP \cdot AP^{AV} + \\
+				& \ \ \ PRESACRA \cdot ACRA^{AV} + PRESRDES \cdot RDES^{AV}\\
+\end{align*}
+
+\subsection{Corrida de Prueba}
+Corrida de prueba del archivo tp2.mod con el software GLPK.\\
+
+Problem:     tp2 ;
+
+Rows:        39  ; Columns:     42 ; Non-zeros:   149 
+
+Status:      OPTIMAL 
+
+Objective:   $Z    =   18971019.9    (MAXimum) $
+
+\begin{flushleft}
+ 
+ \begin{tabular}{| l  l  l  r  r  c  r |}
+    \hline
+    No Row &   name &     St &     Activity &       Lower bound &     Upper bound &      Marginal  \\ \hline
+    \hline
+      1 &   Z &              B &       \$18971019.9 &               &			&		 \\ 
+      2 &   inProduccionNL &         NS &               0 &              -0 &               = &         725.539  \\ 
+      3 &   outProduccionNL &      NS &               0 &              -0 &               = &           -725.539 \\ 
+      4 &   inProduccionNM &         NS &               0 &              -0 &               = &         597.844 \\ 
+      5 &   outProduccionNM &      NS &               0 &              -0 &               = &           -597.844 \\ 
+      6 &   inProduccionNP &         NS &               0 &              -0 &               = &         470.149 \\ 
+      7 &   outProduccionNP &      NS &               0 &              -0 &               = &           -470.149 \\ 
+      8 &   inProduccionAL &         NS &               0 &              -0 &               = &             400 \\ 
+      9 &   outProduccionAL &      NS &               0 &              -0 &               = &           -400 \\ 
+     10 &   inProduccionAP &         NS &               0 &              -0 &               = &             400 \\ 
+     11 &   outProduccionAP &      NS &               0 &              -0 &               = &           -400 \\ 
+     12 &   inProduccionRDES &       NS &               0 &              -0 &               = &             400 \\ 
+     13 &   outProduccionRDES &    NS &               0 &              -0 &               = &           -400 \\ 
+     14 &   inProduccionGREF &       NS &               0 &              -0 &               = &         1044.78 \\ 
+     15 &   outProduccionGREF &    NS &               0 &              -0 &               = &           -1044.78 \\ 
+     16 &   inProduccionGCRA &       NS &               0 &              -0 &               = &         1428.57 \\ 
+     17 &   outProduccionGCRA &    NS &               0 &              -0 &               = &           -1428.57 \\ 
+     18 &   inProduccionACRA &       NS &               0 &              -0 &               = &         533.333 \\ 
+     19 &   outProduccionACRA &    NS &               0 &              -0 &               = &           -533.333 \\ 
+     20 &   finalPR &        NS &               0 &              -0 &               = &         -551.41 \\ 
+     21 &   finalSU &        NS &               0 &              -0 &               = &         -551.41 \\ 
+     22 &   ALpartFO &       NS &               0 &              -0 &               = &             400 \\ 
+     23 &   APpartFO &       NS &               0 &              -0 &               = &             400 \\ 
+     24 &   ACRApartFO &     NS &               0 &              -0 &               = &         533.333 \\ 
+     25 &   RDESpartFO &     NS &               0 &              -0 &               = &             400 \\ 
+     26 &   finalAV &        NS &               0 &              -0 &               = &             400 \\ 
+     27 &   finalLU &        NS &               0 &              -0 &               = &             400 \\ \hline        
+     28 &   dispCrudo1 &     NU &           20000 &                 &        20000   &         3.23383 \\ 
+     29 &   dispCrudo2 &     B &            25000 &                &         30000   &  			\\ 
+     30 &   maxDestilado &   NU &           45000 &                 &        45000   &         422.919 \\ 
+     31 &   maxReformado &         B &          7412.94 &                  &       10000   &  			\\ 
+     32 &   maxCraqueo &     B &                0 &                   &       8000   &  			\\ 
+     33 &   minLub &         NL &             500 &             500 &                &           -250 \\ 
+     34 &   maxLub &         B &              500 &                 &         1000    &  		\\ 
+     35 &   minPremium &     B &          20422.9 &              -0 &                & 		\\ 
+     36 &   minOCTPR &       NU &               0 &                  &             -0 &         12.7695 \\ 
+     37 &   minOCTSU &       NU &               0 &                  &             -0 &         12.7695 \\ 
+     38 &   maxOCTSU &       B &                0 &              -0 &                &		\\ 
+     39 &   maxPresAV &      B &             5645 &              -0 &                &		\\ 
+     \hline
+       \end{tabular}
+\end{flushleft}%\end{center}
+
+
+\begin{center}
+  \begin{tabular}{| l  l  l  r  r  c  r |}
+    \hline
+    No. Column &   name &    St &     Activity &       Lower bound &     Upper bound &      Marginal 	\\ \hline
+    \hline
+      1 &   C1 &             B &            20000 &               0 &                &		\\
+      2 &   C2 &             B &            25000 &               0 &                &		\\ \hline                 
+      3 &   NL &             B &             5750 &               0 &                &		\\                
+      4 &   NLREF &          NL &               0 &               0 &                 &     -98.6733 \\ 
+      5 &   NLPR &           B &             5750 &               0 &                &		\\                
+      6 &   NLSU &           NL &               0 &               0 &                 &        $<$eps \\  \hline 
+      7 &   NM &             B &            10250 &               0 &                &		\\                
+      8 &   NMREF &          NL &               0 &               0 &                 &     -54.5605 \\ 
+      9 &   NMPR &           B &            10250 &               0 &                &		\\                
+     10 &   NMSU &           NL &               0 &               0 &                 &        $<$eps \\ \hline
+     11 &   NP &             B &             8500 &               0 &                &		\\                
+     12 &   NPREF &          B &          7412.94 &               0 &                &		\\                
+     13 &   NPPR &           B &          1087.06 &               0 &                &		\\                
+     14 &   NPSU &           B &                0 &               0 &                &		\\ \hline        
+     15 &   AL &             B &             4400 &               0 &                &		\\                
+     16 &   ALAV &           B &             4400 &               0 &                &		\\  
+     17 &   ALGCRA &         B &                0 &               0 &                &		\\                
+     18 &   ALACRA &         NL &               0 &               0 &                 &     -37.3333 \\ 
+     19 &   ALFO &           B &                0 &               0 &                &		\\ \hline                       
+     20 &   AP &             B &             2000 &               0 &                &		\\                
+     21 &   APAV &           B &             2000 &               0 &                &		\\                
+     22 &   APGCRA &         NL &               0 &               0 &                 &     -114.286 \\ 
+     23 &   APACRA &         B &                0 &               0 &                &		\\                
+     24 &   APFO &           B &                0 &               0 &                &		\\ \hline        
+     25 &   RDES &           B &             5600 &               0 &                &		\\                
+     26 &   RDESAV &         B &             5100 &               0 &                &		\\                
+     27 &   RDESLU &         B &              500 &               0 &                &		\\                
+     28 &   RDESFO &         B &                0 &               0 &                &		\\ \hline                        
+     29 &   GREF &           B &          3335.82 &               0 &                &		\\                
+     30 &   GREFPR &         B &          3335.82 &               0 &                &		\\                
+     31 &   GREFSU &         B &                0 &               0 &                &		\\ \hline          
+     32 &   GCRA &           B &                0 &               0 &                &		\\                
+     33 &   GCRAPR &         NL &               0 &               0 &                 &      -511.49 \\ 
+     34 &   GCRASU &         NL &               0 &               0 &                 &      -511.49 \\ \hline        
+     35 &   ACRA &           B &                0 &               0 &                &		\\                
+     36 &   ACRAAV &         NL &               0 &               0 &                &      -133.333 \\ 
+     37 &   ACRAFO &         B &                0 &               0 &                &		\\ \hline               
+     38 &   PR &             B &          20422.9 &               0 &                &		\\                
+     39 &   SU &             NL &               0 &               0 &                &      -61.6915 \\ 
+     40 &   AV &             B &            11500 &               0 &                &		\\                
+     41 &   FO &             NL &               0 &               0 &                &        -12370 \\ 
+     42 &   LU &             B &              500 &               0 &                &		\\                
+\hline
+       \end{tabular}
+\end{center}
+
+\newpage
+
+
+\newpage
+
+\section{Ejercicio Complementario}
+
+\subsection{An\'alisis del caso}
+
+Pepe desea fabricar sidra de manera artesanal para luego venderla a una cadena re locales gourmet. Para esto, cuenta con tres tipos distintos de manzanas como materia prima, a partir de las cuales se pueden obtener tanto sidra natural como sidra dulce. La diferencia entre una y otra surge de cambios en la proporci\'on de las diferentes manzanas utilizadas. 
+
+\subsection{Objetivo}
+
+Determinar la cantidad de sidra de uno y otro tipo a producir de forma tal de maximizar las ganancias que obtiene Pepe en un per\'iodo. (En este caso utilizaremos un per\'iodo de una semana, ya que lo consideramos razonable.)
+
+\subsection{Hip\'otesis}
+\begin{itemize}
+  \item{Dispone del dinero para comprar toda la materia prima necesaria}
+ \item{Dispone de tiempo suficiente para realizar toda la producci\'on indicada}
+ \item{No tiene stock previo}
+ \item{La cadena de locales comprar\'a toda la producc\'on obtenida}
+ \item{No hay p\'erdidas de materia prima en el proceso ni en el transporte}
+ \item{No hay p\'erdidas de producci\'on}
+ \item{Los precios son constantes dentro del per\'iodo.}
+\end{itemize}
+ 
+\subsection{Variables}
+
+ \subsubsection{Venta}
+\vspace{2mm}
+ $ SN = $ Litros/Sem de Sidra Natural
+ 
+ $ SD = $ Litros/Sem de Sidra Dulce
+ \vspace{2mm}
+ 
+\subsection{Ecuaciones}
+
+\begin{align*}
+0.25\ \cdot \ SD\ + \ 0.50\ \cdot \ SN \ &\leq \ 15  \\
+ 0.50\ \cdot \ SD\ + \ 0.50\ \cdot \ SN \ &\leq \ 60  \\
+ 0.25\ \cdot \ SD\ &\leq \ 15  \\
+ SD \ &\geq\ 10  \\
+ Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
+\end{align*}
+
+\end{document}
