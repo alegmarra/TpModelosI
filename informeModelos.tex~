@@ -550,6 +550,32 @@ Determinar la cantidad de sidra de uno y otro tipo a producir de forma tal de ma
  Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
 \end{align*}
 
+\subsection{Desarrollo Simplex}
+
+\begin{align*}
+0.5\ \cdot \ SN\ +\ SD \ +\ X3 \ &= \ 15  \\
+SD\ +\ SN \ +\ X4 \ &= \ 60  \\
+0.5\ \cdot \ SN\ +\ X5 \ &= \ 15  \\
+SD \ +\ X6 \ - \mu \ &= 10  \\
+Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
+\end{align*}
+
+\begin{center}
+ \begin{tabular}{| c c c | c  c  c  c  c  c  c  c |}
+    \hline
+     	&  	  &   Cj   &   20     &   15   &   0    &   0   &   0     &   0      &   -M    	   	&	       \\ 
+    Ck 	&   Xk    &   Bk   &   SN    &   SD    &   A3   &   A4   &   A5   &   A6   &   A7		&  $\theta$    \\ \hline
+    0   &   X3    &        &   0.5   &   1     &   1    &   0    &   0   &   0   &   0   			&    		\\
+    0 	&   X4    &        &   1     &   1     &   0    &   1    &   0   &   0   &   0   			& 	        \\ 
+    0 	&   X5    &        &    0.5  &   1     &   0    &   0    &   1   &   0   &   0   			&    		\\ 
+    0 	&   X6    & ---    &   0     &   1     &   0    &   0    &   0   &   1   &   1   			&    		\\ \hline
+    Zj 	&         &        &   0     &   0     &   0    &   0    &   0   &   0   &   0    	&    		\\ 
+    Zj - Cj 	  &        &         &   -20   &   -15   &   0   &   0   &   0   &   0    		&   -M   &    \\ 
+    \hline
+ \end{tabular}
+\end{center}
+
+
 \subsection{Corrida de Prueba}
 Corrida de prueba del archivo ej2TP2.mod con el software GLPK.\\
 
@@ -576,7 +602,7 @@ Objective:   $Z    =   350 \   (MAXimum) $
      5 	&	reqBar       &  NL     &       10      &      10           	&              	 	&	-25	\\ \hline
       \hline
     No.	& 	Column  name &    St 	&     Activity 	&       Lower bound 	&     Upper bound 	&      Marginal 	\\ \hline
-    \hlines
+    \hline
      1 &	SN           &	B	& 	10	&             0         &			&		\\      
      2 &	SD           &	B       &      10      &	      0          &			&		\\     
      \hline
