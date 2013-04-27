@@ -550,38 +550,71 @@ Determinar la cantidad de sidra de uno y otro tipo a producir de forma tal de ma
  Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
 \end{align*}
 
+\newpage
+
+\subsection{Resoluci\'on por gr\'afico}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.6]{graficoModelos.jpg}
+\end{figure}
+
 \subsection{Desarrollo Simplex}
 
 \begin{align*}
 0.5\ \cdot \ SN\ +\ SD \ +\ X3 \ &= \ 15  \\
 SD\ +\ SN \ +\ X4 \ &= \ 60  \\
 0.5\ \cdot \ SN\ +\ X5 \ &= \ 15  \\
-SD \ +\ X6 \ - \mu \ &= 10  \\
+SD \ -\ X6 \ + \mu \ &= 10  \\
 Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
 \end{align*}
+
+\newpage
 
 \begin{center}
  \begin{tabular}{| c c c | c  c  c  c  c  c  c  c |}
     \hline
-     	&  	  &   Cj   &   20     &   15   &   0    &   0   &   0     &   0      &   -M    	   	&	       \\ 
-    Ck 	&   Xk    &   Bk   &   SN    &   SD    &   A3   &   A4   &   A5   &   A6   &   A7		&  $\theta$    \\ \hline
-    0   &   X3    &        &   0.5   &   1     &   1    &   0    &   0   &   0   &   0   			&    		\\
-    0 	&   X4    &        &   1     &   1     &   0    &   1    &   0   &   0   &   0   			& 	        \\ 
-    0 	&   X5    &        &    0.5  &   1     &   0    &   0    &   1   &   0   &   0   			&    		\\ 
-    0 	&   X6    &   	    &   0     &   1     &   0    &   0    &   0   &   1   &   1   			&    		\\ \hline
-    Zj 	&         & ---    &   0     &   0     &   0    &   0    &   0   &   0   &   0    	&    		\\ 
-    Zj - Cj 	  &        &         &   -20   &   -15   &   0   &   0   &   0   &   0    		&   -M   &    \\ 
+		&			&   Cj   &   20    &   15    &   0    &   0    &   0    &   0    &   -M   &	       \\ 
+    Ck 		&   Xk			&   Bk   &   SN    &   SD    &   A3   &   A4   &   A5   &   A6   &   A7   &  $\theta$    \\ \hline 
+    0   	&   X3			&   15   &   0.5   &   1     &   1    &   0    &   0    &   0    &   0    &  15  		\\
+    0 		&   X4			&   60   &   1     &   1     &   0    &   1    &   0    &   0    &   0    &  60	        \\ 
+    0 		&   X5			&   15   &   0.5   &   0     &   0    &   0    &   1    &   0    &   0    &   - 		\\ 
+   -M 		&   $\mu$		&   10   &   0     & $\textbf{1}$&   0    &   0    &   0    &  -1    &   1    &  10  		\\ \hline
+\multicolumn{2}{|c|}{$Z=\ -10M$}	& Zj 	 &   0     &  -M     &   0    &   0    &   0    &   M    &  -M    &          		\\ 
+\multicolumn{2}{|c|}{}			& Zj-Cj  &  -20    &  -15-M  &   0    &   0    &   0    &   M    &   0    &       \\ 
     \hline
  \end{tabular}
 \end{center}
 
-\subsection{Gr\'afico}
+\begin{center}
+ \begin{tabular}{| c c c | c  c  c  c  c  c  c  c |}
+    \hline
+     	&			&   Cj   &   20    	&   15    &   0    &   0    &   0    &   0    &   -M   &	       \\ 
+    Ck 	&   Xk			&   Bk   &   SN   	 &   SD    &   A3   &   A4   &   A5   &   A6   &   A7   &  $\theta$    \\ \hline
+    0   &   X3			&    5   &$\textbf{0.5}$&   0     &   1    &   0    &   0    &   1    &  -1    &  10  		\\
+    0 	&   X4			&   50   &   1    	 &   0     &   0    &   1    &   0    &   1    &  -1    &  50	        \\ 
+    0 	&   X5			&   15   &   0.5	&   0     &   0    &   0    &   1    &   0    &   0    &  30 		\\ 
+    15 	&   SD			&   10   &   0   	&   1     &   0    &   0    &   0    &  -1    &   1    &   -  		\\ \hline
+\multicolumn{2}{|c|}{$Z=150$}	& Zj 	 &   0     	&   15    &   0    &   0    &   0    &  -15   &   15   &         		\\ 
+ \multicolumn{2}{|c|}{}		& Zj-Cj  &  -20    	&   0     &   0    &   0    &   0    &  -15   &   15+M &      		\\ 
+    \hline
+ \end{tabular}
+\end{center}
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[scale=0.5]{graficoModelos 001.jpg}
-\caption{}
-\end{figure}
+\begin{center}
+ \begin{tabular}{| c c c | c  c  c  c  c  c  c  c |}
+    \hline
+     	&			&   Cj   &   20    &   15    &   0    &   0    &   0    &   0    &   -M   &	       \\ 
+    Ck 	&   Xk			&   Bk   &   SN    &   SD    &   A3   &   A4   &   A5   &   A6   &   A7   &  $\theta$    \\ \hline
+    20  &   SN			&   10   &   1     &   0     &   2    &   0    &   0    &   2    &  -2    &   -  		\\
+    0 	&   X4			&   40   &   0     &   0     &  -2    &   1    &   0    &  -1    &   1    &   -	        \\ 
+    0 	&   X5			&   10   &   0     &   0     &  -1    &   0    &   1    &  -1    &   1    &   - 		\\ 
+   15 	&   SD			&   10   &   0     &   1     &   0    &   0    &   0    &  -1    &   1    &   -  		\\ \hline
+\multicolumn{2}{|c|}{$Z=350$}	& Zj 	 &   20    &   15    &   0    &   0    &   0    &   25   &  -25   &   	\\ 
+ \multicolumn{2}{|c|}{}		& Zj-Cj  &   0     &   0     &   40   &   0    &   0    &   25   &  -25+M &    \\ 
+    \hline
+ \end{tabular}
+\end{center}
 
 \subsection{Corrida de Prueba}
 Corrida de prueba del archivo ej2TP2.mod con el software GLPK.\\
@@ -615,7 +648,7 @@ Objective:   $Z    =   350 \   (MAXimum) $
      \hline
  \end{tabular}
 \end{center}
-
+\newpage
 \begin{verbatim}
  Karush-Kuhn-Tucker optimality conditions:
 
@@ -634,16 +667,19 @@ KKT.DE: max.abs.err. = 0.00e+00 on column 0
 KKT.DB: max.abs.err. = 0.00e+00 on row 0
         max.rel.err. = 0.00e+00 on row 0
         High quality
-
 End of output
-
 \end{verbatim}
 
 \subsection{An\'alisis de los Resultados}
 
-Al observar los resultados obtenidos, vemos que la soluci\'on llega a la igualdad de producci\'on tanto de Sidra Dulce como Natural, pero esto no implica que sean igual de \'utiles a la hora de mejorar el funcional. Lo primero que se busc\'o fue cumplir con la condici\'on de compromiso de entrega, obteniendo entonces un m\'inimo de 10 litros de Sidra Dulce. Una vez cubierto este minimo, todos los recursos sobrantes fueron utilizados para producir Sidra Natural, debido a su mayor costo de venta en el mercado.\\
+Al observar los resultados obtenidos, vemos que la soluci\'on llega a la igualdad de producci\'on tanto de Sidra Dulce como Natural, pero esto no implica que sean igual de \'utiles a la hora de mejorar el funcional. Lo primero que se busc\'o fue cumplir con la condici\'on de compromiso de entrega, obteniendo entonces un m\'inimo de 10L de Sidra Dulce. Una vez cubierto este m\'inimo, todos los recursos sobrantes fueron utilizados para producir Sidra Natural, debido a su mayor precio de venta en el mercado.\\
 
-En los valores marginales se puede ver que, si tuviesemos un m\'inimo de 11 para la Sidra Dulce, se obtendr\'ian \$25 menos de beneficio en el funcional ya que el el recurso utilizado ya no estar\'ia disponible para la producci\'on de la Sidra Natural. Bajo el mismo an\'alisis, conseguir un kilo de manzana Verde adicional (ignorando el costo del mismo), implicar\'ia un aumento de \$40 en el funcional, es decir, se obtendr\'ia un mayor beneficio.
+En los valores marginales se puede ver que, si tuviesemos un m\'inimo de 11L para la Sidra Dulce, se obtendr\'ian \$25 menos de beneficio en el funcional ya que el el recurso utilizado ya no estar\'ia disponible para la producci\'on de la Sidra Natural. Bajo el mismo an\'alisis, conseguir un kilo de manzana Verde adicional (ignorando el costo del mismo), implicar\'ia un aumento de \$40 en el funcional, es decir, se obtendr\'ia un mayor beneficio.\\
+
+En el m\'etodo Simplex, se ve que se parte del origen del eje de coordenadas, que no pertenece al poliedro del gr\'afico (no cumple con entregar al menos 10L de Sidra Dulce). Al hacerse cero la variable artificial, pasa a uno de lo v\'ertices del recinto, salte\'andose uno que a simple vista se ve que generar\'ia menos ganancias (puntos (0, 10) y (0, 15) ).
+En la siguiente iteraci\'on, como no se puede mejorar, se llega a la soluci\'on \'optima, que coincide con el gr\'afico y la salida del software.\\
+
+Lo que se mencionaba dos p\'arrafos antes, se ve aqu\'i en la fila inferior (Zj-Cj). En la columna A6, que est\'a relacionada a la variable X6, la cual indica cu\'antos litros por encima del m\'inimo de Sidra Dulce produce Pepe, el valor 25 indica que eso disminuir\'ia el funcional si fabricara un litro m\'as (Al ser un problema de m\'aximo, valores positivos indican desmejor\'ia del funcional). La limitaci\'on de las manzanas verdes tambi\'en puede verse en la columna A3, relacionada a X3, variable que indica cu\'antos Kg de Verdes \textbf{no} se est\'an usando. Entonces, aumentar en 1 esta variable, hace bajar en \$40 el funcional.
 
 
 \newpage
