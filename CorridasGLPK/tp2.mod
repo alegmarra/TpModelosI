@@ -1,4 +1,7 @@
-# Resolucion TP2
+# Resolucion TP - Modelos y Optimización I - Cátedra Sábados
+# Bogado Sebastián 	 - 91707
+# García Marra Alejandro - 91516
+# Ejercicio 1 - 2da Entrega
 
 /* variables  */
 # Compra

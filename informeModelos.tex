@@ -37,6 +37,7 @@
 \titlespacing\subsection{5pt}{12pt plus 4pt minus 2pt}{12pt plus 2pt minus 2pt}
 \titlespacing\subsubsection{10pt}{0pt plus 2pt minus 2pt}{0pt plus 2pt minus 2pt}
 
+\usepackage{listings}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -79,9 +80,7 @@
 
 \subsection{An\'alisis del caso}
 
-CAMBIAR
-
-Una refiner\'ia tiene una producci\'on diaria de distintos tipos de combustibles y aceites a partir de petr\'oleo crudo de dos tipos distintos. A lo largo de los distintos procesos de destilaci\'on se consiguen los diversos productos. Cuanto m\'as refinado es el producto, mas valioso es para su venta.
+En esta situaci\'on problem\'atica, nos encontramos con una refiner\'ia de petr\'oleo, la cual elabora distintos productos finales, compuestos por diversos sub-productos. Lo que se busca entonces es optimizar las ganancias obtenidas por los productos finales, por medio de la correcta distribuci\'on de los sub-productos en los diversos procesos intermedios.
 
 \subsection{Objetivo}
 Determinar la cantidad de barriles de los distintos tipos de combustible, fueloil y lubricante a producir, as\'i como la composici\'on de los combustibles para maximizar las utilidades de la refiner\'ia por d\'ia.
@@ -410,6 +409,266 @@ Objective:   $Z    =   18971019.9    (MAXimum) $
 \end{center}
 
 \newpage
+\subsection{An\'alisis de los Resultados}
+
+El funcional obtenido es $Z = \$18971019,9$, aproximadamente 19 millones de pesos por d\'ia en ventas. Si nos fijamos en los costos unitarios por producto final de los barriles, vemos que esta cifra puede ser v\'alida, ya que se procesan decenas de miles de barriles por d\'ia, a un promedio de \$440 por barril, aunque con gran diferencia entre el de mayor valor (\$700) y el de menor (\$150).
+\\
+
+Se puede observar en la primer tabla la utilizaci\'on plena del Crudo1 como materia prima, mientras que del Crudo 2 tenemos un sobrante del 16\%. Esto se debe a que s\'olo es posible obtener el Aceite pesado, necesario para la producci\'on de Combustible para Aviones o Fueloil (m\'as al respecto a continuaci\'on), por medio de la destlaci\'on del crudo de primer tipo. Por lo tanto, para generar esas ganancias se fuerza su destilaci\'on. Esto puede verse en el valor marginal de la materia prima, lo cual nos indica que tener disponible 1 barril extra de Crudo tipo 1, implicar\'ia un incremento de \$3 en el funcional.
+No se consigue el uso total del crudo de tipo 2 debido a la saturaci\'on de la capacidad de destilaci\'on diaria.
+Viendo que dicho m\'aximo de destilaci\'on fue alcanzado, su costo marginal es de \$422.9, es decir, aumentar la capacidad de destilaci\'o en 1 barril, implicar\'ia un incremento en el funcional de \$422.9. 
+\\
+En el caso del Reformado, no se consigue saturar la producci\'on posible, quedando un restante de 2587 barriles (25\% de la capacidad total). Esto podr\'ia ser el resultado de un rendimiento no muy tentador por parte del proceso de reformado. Si bien se consiguen incrementos en el octanaje, en 2 de 3 casos el rendimiento por barril está cerca del 50\%, por lo que \'unicamente pasaron por el Reformado los barriles de Nafta Pesada obtenidos de la destilaci\'on, siendo los que mejor relaci\'on entre octanaje - rendimiento ten\'ian.
+\\
+Es llamativo lo ocurrido en el proceso de Craqueo, del cual no se hizo uso (0 barriles procesados de los 8000 de capacidad). Nuevamente, la relaci\'on entre el beneficio del craqueo y su rendimiento no fue el suficiente como para priorizar este proceso. 
+\\
+
+Pasando a los productos finales, podemos ver que la restricci\'on sobre el m\'inimo de Lubricante a producir genera una p\'erdida, ya que incrementar en una unidad el m\'inimo de barriles de Lubricante, implica una p\'erdida de \$250 en el funcional. Esto ocurre por el bajo precio de estos barriles, cuya producci\'on quita recursos utilizables en otros productos de mayor valor comercial, como el combustible para Aviones.
+\\
+
+Con los precios de venta en mente, podemos ver que los de menor valor quedaron relegados a una producci\'on nula (o m\'inima por la presencia de restricciones), como fue el caso de la Nafta Super, o el Fueloil. De hecho, restricciones sobre un m\'inimo de producci\'on necesario en las naftas super, de 1 barril diario, provocar\'ia una p\'erdida de \$61 en el funcional, mientras que para el caso del Fueloil esta cifra asciende llamativamente a \$12370. Como se menciona con anterioridad, esto se debe a que la producci\'on de estos barriles consume materia prima que podr\'ia aplicarse a la producci\'on de barriles con mayor valor comercial. 
+\\
+
+En forma de resumen, podemos destacar que el funcional, al ser de m\'aximo, busc\'o la mayor producci\'on posible del producto mas valioso comercialmente, el combustible premium, y s\'olo se obtuvieron producciones de otro tipo para aprovechar materia prima (o sub-productos) sobrantes. En este problema, hacer mas estrictos los m\'inimos necesarios para cada producto, llevar\'ia a una p\'erdida de dinero por parte de la empresa.
+
+Para mejorar a\'un mas las potenciales ganancias, se deber\'ia incrementar la capacidad m\'axima de destilaci\'on diaria, as\'i como tambi\'en conseguir mayor cantidad de crudo de tipo 1 paqra su procesado. 
+
+\begin{center}
+ \begin{tabular}{ l  r }
+	\hline
+	Consumo Crudo 1 			&	 100\% 	\\
+	Consumo Crudo 2 			& 	83.3\%	\\ \hline
+	Capacidad de Destilaci\'on Sobrante	&	   0\%	\\
+	Capacidad de Reformado Sobrante	&	74.3\%	\\
+	Capacidad de Craqueado Sobrante	&	 100\%	\\ \hline
+	Nafta Liviana				& 	 5750 B/dia \\
+	Nafta Liviana para Premium		& 	 100\%	\\
+	Nafta Liviana para Super		& 	   0\%	\\
+	Nafta Liviana para Reformado		& 	   0\%	\\ \hline
+	Nafta Mediana 				& 	 10250 B/dia\\
+	Nafta Mediana para Premium		& 	 100\%	\\
+	Nafta Mediana para Super		& 	   0\%	\\
+	Nafta Mediana para Reformado		& 	   0\%	\\ \hline
+	Nafta Pesada 				&       8500 B/dia	\\
+	Nafta Pesada para Premium		&       12.8\%	\\
+	Nafta Pesada para Super			&  	   0\%	\\
+	Nafta Pesada para Reformado		&       87.2\%	\\ \hline
+	Aceite Liviano				&	4400 B/dia \\
+	Aceite Liviano para Aviones		& 	  100\%	\\
+	Aceite Liviano para Gasolina Craquada	& 	  0\%	\\
+	Aceite Liviano para Aceite Craqueado	& 	  0\%	\\
+	Aceite Liviano para Fueloil		& 	  0\%	\\ \hline
+	Aceite Pesado 				&	200 B/dia	\\
+	Aceite Pesado para Aviones		& 	  100\%	\\
+	Aceite Pesado para Gasolina Craqueada	& 	  0\%	\\
+	Aceite Pesado para Aceite Craqueado		& 	  0\%	\\
+	Aceite Pesado para Fueloil		& 	  0\%	\\ \hline
+	Residuo de Destilaci\'on		& 	5600 B/dia	\\ 
+	Residuo Destilaci\'on para Aviones	& 	91\%	\\ 
+	Residuo Destilaci\'on para Lubricante	& 	9\%	\\ 
+	Residuo Destilaci\'on para Fueloil	& 	0\%	\\ \hline
+	Gasolina Craqueada			&	0 B/dia	\\ \hline
+	Gasolina Reformada			&	3335.82 B/dia	\\ \hline
+	Gasolina Reformada para Nafta Premium  &	100\%	\\
+	Gasolina Reformada para Nafta Super	&	0\%	\\ \hline
+	Aceite Craqueado 			&	0 B/dia \\ \hline
+	Combustible Premium			&	20422.9 B/dia\\                
+	Combustible Super			& 	0 B/dia\\ 
+	Combustible Aviones 			&	11500 B/dia \\                
+	Fueloil 				 &      0 B/dia \\ 
+	Lubricante				 &      500 B/dia	\\        
+	
+ \end{tabular}
+
+\end{center}
+
+
+
+
+
+\newpage
+\subsection{Anexo I: Modelizaci\'on con GLPK}
+
+\begin{verbatim}
+# Resolucion TP - Modelos y Optimizacion I - Catedra Sabados
+# Bogado Sebastian 	 - 91707
+# Garcia Marra Alejandro - 91516
+# Ejercicio 1 - 2da Entrega
+
+			/* variables  */
+
+# Compra
+var C1 >= 0;
+var C2 >= 0;
+
+
+# Destilado
+var NL >= 0; 
+var NLREF >= 0; 
+var NLPR >= 0; 
+var NLSU >= 0;
+
+var NM >= 0; 
+var NMREF >= 0;
+var NMPR >= 0;  
+var NMSU >= 0; 
+
+var NP >= 0;  
+var NPREF >= 0; 
+var NPPR >= 0; 
+var NPSU >= 0;
+
+var AL >= 0;  
+var ALAV >= 0;  
+var ALGCRA >= 0;  
+var ALACRA >= 0;  
+var ALFO >= 0;  
+
+var AP >= 0;  
+var APAV >= 0;  
+var APGCRA >= 0;  
+var APACRA >= 0;  
+var APFO >= 0;  
+
+var RDES >= 0;
+var RDESAV >= 0;
+var RDESLU >= 0;
+var RDESFO >= 0; 
+
+
+
+
+# Reformado
+var GREF >= 0;
+var GREFPR >= 0;
+var GREFSU >= 0;
+
+
+# Craqueo
+var GCRA >= 0;
+var GCRAPR >= 0;
+var GCRASU >= 0;
+
+var ACRA >= 0;
+var ACRAAV >= 0;
+var ACRAFO >= 0;
+
+
+# Ventas
+
+var PR >= 0;
+var SU >= 0;
+var AV >= 0;
+var FO >= 0;
+var LU >= 0;
+
+/* Funcional */
+maximize Z: 700 * PR + 600 * SU + 400 * AV + 350 * FO + 150 * LU;
+
+			/*** Ecuaciones ***/
+
+/*- Destilado -*/
+
+/*Nafta Liviana*/
+s.t. inProduccionNL:   NL = 0.1 * C1 + 0.15 * C2;
+s.t. outProduccionNL:  NL = NLREF + NLPR + NLSU;
+
+/*Nafta Mediana*/
+s.t. inProduccionNM:   NM = 0.2 * C1 + 0.25 * C2;
+s.t. outProduccionNM:  NM = NMREF + NMPR + NMSU;
+
+/*Nafta Pesada*/
+s.t. inProduccionNP:   NP = 0.2 * C1 + 0.18 * C2;
+s.t. outProduccionNP:  NP = NPREF + NPPR + NPSU;
+
+/*Aceite Liviano*/
+s.t. inProduccionAL:   AL = 0.12 * C1 + 0.08 * C2;
+s.t. outProduccionAL : AL = ALAV + ALGCRA + ALACRA + ALFO;
+
+/*Aceite Pesado*/
+s.t. inProduccionAP:   AP = 0.1 * C1;
+s.t. outProduccionAP:  AP = APAV + APGCRA + APACRA + APFO;
+
+
+/*Residuo Destilado*/
+s.t. inProduccionRDES:   RDES = 0.13 * C1 + 0.12 * C2;
+s.t. outProduccionRDES:  RDES = RDESAV + RDESLU + RDESFO;
+
+
+/*- Reformado -*/
+
+/*Gasolina Reformada*/
+s.t. inProduccionGREF:   GREF = 0.6 * NLREF + 0.52 * NMREF + 0.45 * NPREF;
+s.t. outProduccionGREF:  GREF = GREFPR + GREFSU;
+
+
+/*- Craqueo -*/
+
+/*Gasolina Craqueada*/
+s.t. inProduccionGCRA:   GCRA = 0.28 * ALGCRA + 0.2 * APGCRA;
+s.t. outProduccionGCRA:  GCRA = GCRAPR + GCRASU;
+
+/*Aceite Craqueado*/
+s.t. inProduccionACRA:   ACRA = 0.68 * ALACRA + 0.75 * APACRA;
+s.t. outProduccionACRA:  ACRA = ACRAAV + ACRAFO;
+
+
+/*- Ventas -*/
+
+s.t. finalPR: PR = NLPR + NMPR + NPPR + GCRAPR + GREFPR;
+s.t. finalSU: SU = NLSU + NMSU + NPSU + GCRASU + GREFSU;
+
+s.t. ALpartFO: 	 1.8 * FO = ALFO;
+s.t. APpartFO: 	   6 * FO = APFO;
+s.t. ACRApartFO: 4.5 * FO = ACRAFO;
+s.t. RDESpartFO:  18 * FO = RDESFO;
+
+s.t. finalAV: AV = ALAV + APAV + ACRAAV + RDESAV;
+s.t. finalLU: LU = RDESLU;
+
+
+			/** Restricciones **/
+
+			
+/* Destilaciones máximas de Crudos */
+s.t. dispCrudo1: C1 <= 20000;
+s.t. dispCrudo2: C2 <= 30000;
+s.t. maxDestilado: C1 + C2 <= 45000;
+
+
+/* Reformado maximo de naftas */
+s.t. maxReformado: NLREF + NMREF + NPREF <= 10000;
+
+
+/* Craqueo maximo de aceites */
+s.t. maxCraqueo: ALGCRA + ALACRA + APGCRA + APACRA <= 8000;
+
+
+/* Produccion de Lubricantes */
+s.t. minLub: LU >= 500;
+s.t. maxLub: LU <= 1000;
+
+
+/* Minimo inProduccion nafta Premium */
+s.t. minPremium: PR >= 0.4 * SU;
+
+
+/* Octanaje nafta Premium */
+s.t. minOCTPR: PR * 98 <= 100 * NLPR + 90 * NMPR + 80 * NPPR +
+			  + 115 * GCRAPR + 125* GREFPR;
+
+/* Octanaje nafta Super*/
+s.t. minOCTSU: SU * 95 <= 100 * NLSU + 90 * NMSU + 80 * NPSU +
+			  + 115 * GCRASU + 125* GREFSU;
+s.t. maxOCTSU: SU * 97.99 >= 100 * NLSU + 90 * NMSU + 80 * NPSU +
+			      + 115 * GCRASU + 125* GREFSU;
+
+			      
+/* Presion por cm^2 de Combustible para Aviones*/
+s.t. maxPresAV: AV  >= 1 * ALAV + 0.6 * APAV + 1.5 * ACRAAV +
+			+ 0.05 * RDESAV;
+end;
+\end{verbatim}
 
 
 \newpage
@@ -447,9 +706,9 @@ Determinar la cantidad de sidra de uno y otro tipo a producir de forma tal de ma
 \subsection{Ecuaciones}
 
 \begin{align*}
-0.25\ \cdot \ SD\ + \ 0.50\ \cdot \ SN \ &\leq \ 15  \\
- 0.50\ \cdot \ SD\ + \ 0.50\ \cdot \ SN \ &\leq \ 60  \\
- 0.25\ \cdot \ SD\ &\leq \ 15  \\
+0.5\ \cdot \ SD\ + \ 1\ \cdot \ SN \ &\leq \ 15  \\
+ SD\ +\ SN \ &\leq \ 60  \\
+ 0.5\ \cdot \ SD\ &\leq \ 15  \\
  SD \ &\geq\ 10  \\
  Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
 \end{align*}
