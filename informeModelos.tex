@@ -550,6 +550,13 @@ Determinar la cantidad de sidra de uno y otro tipo a producir de forma tal de ma
  Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
 \end{align*}
 
+\subsection{Resoluci\'on por gr\'afico}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.6]{graficoModelos.jpg}
+\end{figure}
+
 \subsection{Desarrollo Simplex}
 
 \begin{align*}
@@ -563,14 +570,44 @@ Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
 \begin{center}
  \begin{tabular}{| c c c | c  c  c  c  c  c  c  c |}
     \hline
-     	&  	  &   Cj   &   20     &   15   &   0    &   0   &   0     &   0      &   -M    	   	&	       \\ 
-    Ck 	&   Xk    &   Bk   &   SN    &   SD    &   A3   &   A4   &   A5   &   A6   &   A7		&  $\theta$    \\ \hline
-    0   &   X3    &        &   0.5   &   1     &   1    &   0    &   0   &   0   &   0   			&    		\\
-    0 	&   X4    &        &   1     &   1     &   0    &   1    &   0   &   0   &   0   			& 	        \\ 
-    0 	&   X5    &        &    0.5  &   1     &   0    &   0    &   1   &   0   &   0   			&    		\\ 
-    0 	&   X6    &   	    &   0     &   1     &   0    &   0    &   0   &   1   &   1   			&    		\\ \hline
-    Zj 	&         & ---    &   0     &   0     &   0    &   0    &   0   &   0   &   0    	&    		\\ 
-    Zj - Cj 	  &        &         &   -20   &   -15   &   0   &   0   &   0   &   0    		&   -M   &    \\ 
+     	&			&   Cj   &   20    &   15    &   0    &   0    &   0    &   0    &   -M   &	       \\ 
+    Ck 	&   Xk			&   Bk   &   SN    &   SD    &   A3   &   A4   &   A5   &   A6   &   A7   &  $\theta$    \\ \hline
+    0   &   X3			&   15   &   0.5   &   1     &   1    &   0    &   0    &   0    &   0    &  15  		\\
+    0 	&   X4			&   60   &   1     &   1     &   0    &   1    &   0    &   0    &   0    &  60	        \\ 
+    0 	&   X5			&   15   &   0.5   &   0     &   0    &   0    &   1    &   0    &   0    &   - 		\\ 
+   -M 	&   $\mu$		&   10   &   0     &   1     &   0    &   0    &   0    &  -1    &   1    &  10  		\\ \hline
+\multicolumn{2}{|c|}{Z=-10M}	& Zj 	 &   0     &  -M     &   0    &   0    &   0    &   M    &  -M    &   0   &   0    	&    		\\ 
+\multicolumn{2}{|c|}{}		& Zj-Cj  &  -20    &  -15-M  &   0    &   0    &   0    &   M    &   0    &   0    		&   -M   &    \\ 
+    \hline
+ \end{tabular}
+\end{center}
+
+\begin{center}
+ \begin{tabular}{| c c c | c  c  c  c  c  c  c  c |}
+    \hline
+     	&			&   Cj   &   20    &   15    &   0    &   0    &   0    &   0    &   -M   &	       \\ 
+    Ck 	&   Xk			&   Bk   &   SN    &   SD    &   A3   &   A4   &   A5   &   A6   &   A7   &  $\theta$    \\ \hline
+    0   &   X3			&    5   &   0.5   &   0     &   1    &   0    &   0    &   1    &  -1    &  10  		\\
+    0 	&   X4			&   50   &   1     &   0     &   0    &   1    &   0    &   1    &  -1    &  50	        \\ 
+    0 	&   X5			&   15   &   0.5   &   0     &   0    &   0    &   1    &   0    &   0    &  30 		\\ 
+    15 	&   SD			&   10   &   0     &   1     &   0    &   0    &   0    &  -1    &   1    &   -  		\\ \hline
+\multicolumn{2}{|c|}{Z=150}	& Zj 	 &   0     &   15    &   0    &   0    &   0    &  -15   &   15   &   0   &   0    	&    		\\ 
+ \multicolumn{2}{|c|}{}		& Zj-Cj  &  -20    &   0     &   0    &   0    &   0    &  -15   &   15+M &   0    		&   -M   &    \\ 
+    \hline
+ \end{tabular}
+\end{center}
+
+\begin{center}
+ \begin{tabular}{| c c c | c  c  c  c  c  c  c  c |}
+    \hline
+     	&			&   Cj   &   20    &   15    &   0    &   0    &   0    &   0    &   -M   &	       \\ 
+    Ck 	&   Xk			&   Bk   &   SN    &   SD    &   A3   &   A4   &   A5   &   A6   &   A7   &  $\theta$    \\ \hline
+    0   &   SN			&   10   &   1     &   0     &   2    &   0    &   0    &   2    &  -2    &   -  		\\
+    0 	&   X4			&   40   &   0     &   0     &  -2    &   1    &   0    &  -1    &   1    &   -	        \\ 
+    0 	&   X5			&   10   &   0     &   0     &  -1    &   0    &   1    &  -1    &   1    &   - 		\\ 
+   -M 	&   SD			&   10   &   0     &   1     &   0    &   0    &   0    &  -1    &   1    &   -  		\\ \hline
+\multicolumn{2}{|c|}{Z=350}	& Zj 	 &   20    &   15    &   0    &   0    &   0    &   25   &  -25   &   0   &   0    	&    		\\ 
+ \multicolumn{2}{|c|}{}		& Zj-Cj  &   0     &   0     &   40   &   0    &   0    &   25   &  -25+M &   0    		&   -M   &    \\ 
     \hline
  \end{tabular}
 \end{center}
@@ -631,12 +668,6 @@ End of output
 
 \end{verbatim}
 
-\subsection{Gr\'afico}
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[scale=0.6]{graficoModelos.jpg}
-\end{figure}
 
 
 \subsection{An\'alisis de los Resultados}
