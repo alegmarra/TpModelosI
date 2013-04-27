@@ -553,24 +553,24 @@ Determinar la cantidad de sidra de uno y otro tipo a producir de forma tal de ma
 \subsection{Desarrollo Simplex}
 
 \begin{align*}
-0.5\ \cdot \ SN\ + \ SD \ + \ X3 \ &\eq \ 15  \\
-SD\ +\ SN \ &\leq \ 60  \\
- 0.5\ \cdot \ SN\ &\leq \ 15  \\
- SD \ &\geq\ 10  \\
- Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
+0.5\ \cdot \ SN\ +\ SD \ +\ X3 \ &= \ 15  \\
+SD\ +\ SN \ +\ X4 \ &= \ 60  \\
+0.5\ \cdot \ SN\ +\ X5 \ &= \ 15  \\
+SD \ +\ X6 \ - \mu \ &= 10  \\
+Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
 \end{align*}
 
 \begin{center}
  \begin{tabular}{| c c c | c  c  c  c  c  c  c  c |}
     \hline
-     	&  	  &   Cj   &   20   &   15   &   0   &   0   &   0   &   0   &   -M       &    \\ 
-    Ck 	&   Xk    &   Bk   &   A1   &   A2   &   A3   &   A4   &   A5   &   A6   &   A7   &  $\theta$  \\ \hline
-    0   &   X3    &      &   A1     &   A2   &   1   &   0   &   0   &   0   &   A7   &    \\
-    0 	&   X4    &      &   A1     &   A2   &   0   &   1   &   0   &   0   &   A7   &    \\ 
-    0 	&   X5    &      &   A1     &   A2   &   0   &   0   &   1   &   0   &   A7   &    \\ 
-    0 	&   X6    &      &   A1     &   A2   &   0   &   0   &   0   &   1   &   A7   &    \\ \hline
-    Zj 	&         &      &   0      &   0    &   0   &   0   &   0   &   0   &   0    &    \\ 
-    Zj - Cj 	  &       &   -20   &   -15  &   0   &   0   &   0   &   0   &   0    &   -M   &    \\ 
+     	&  	  &   Cj   &   20     &   15   &   0    &   0   &   0     &   0      &   -M    	   	&	       \\ 
+    Ck 	&   Xk    &   Bk   &   SN    &   SD    &   A3   &   A4   &   A5   &   A6   &   A7		&  $\theta$    \\ \hline
+    0   &   X3    &        &   0.5   &   1     &   1    &   0    &   0   &   0   &   0   			&    		\\
+    0 	&   X4    &        &   1     &   1     &   0    &   1    &   0   &   0   &   0   			& 	        \\ 
+    0 	&   X5    &        &    0.5  &   1     &   0    &   0    &   1   &   0   &   0   			&    		\\ 
+    0 	&   X6    &   	    &   0     &   1     &   0    &   0    &   0   &   1   &   1   			&    		\\ \hline
+    Zj 	&         & ---    &   0     &   0     &   0    &   0    &   0   &   0   &   0    	&    		\\ 
+    Zj - Cj 	  &        &         &   -20   &   -15   &   0   &   0   &   0   &   0    		&   -M   &    \\ 
     \hline
  \end{tabular}
 \end{center}
