@@ -1,21 +1,21 @@
-Problem:    test
+Problem:    ej2TP2
 Rows:       5
 Columns:    2
 Non-zeros:  8
 Status:     OPTIMAL
-Objective:  Z = 950 (MAXimum)
+Objective:  Z = 350 (MAXimum)
 
    No.   Row name   St   Activity     Lower bound   Upper bound    Marginal
 ------ ------------ -- ------------- ------------- ------------- -------------
-     1 Z            B            950                             
-     2 verde        NU            15                          15            80
-     3 rojas        B             25                          60 
-     4 amarillas    B             10                          15 
+     1 Z            B            350                             
+     2 verde        NU            15                          15            40
+     3 rojas        B             20                          60 
+     4 amarillas    B              5                          15 
      5 reqBar       NL            10            10                         -25
 
    No. Column name  St   Activity     Lower bound   Upper bound    Marginal
 ------ ------------ -- ------------- ------------- ------------- -------------
-     1 SN           B             40             0               
+     1 SN           B             10             0               
      2 SD           B             10             0               
 
 Karush-Kuhn-Tucker optimality conditions:
