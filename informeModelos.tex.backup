@@ -45,7 +45,7 @@
 \renewcommand{\headrulewidth}{0pt} % no line in header area
 \fancyfoot{} % clear all footer fields
 \fancyfoot[LE,RO]{\thepage}           % page number in "outer" position of footer line
-\fancyfoot[RE,LO]{Entrega 2} % other info in "inner" position of footer line
+\fancyfoot[RE,LO]{Entrega 1} % other info in "inner" position of footer line
 
 %\usepackage{multicolumn} 
 
@@ -295,7 +295,8 @@ SU \cdot 95 \ Oct \ &\leq OCTNL \cdot NL^{SU} + OCTNM \cdot NM^{SU} + \\
 AV \cdot 1 \ Kg/cm^{2} &\geq PRESAL \cdot AL^{AV} + PRESAP \cdot AP^{AV} + \\
 				& \ \ \ PRESACRA \cdot ACRA^{AV} + PRESRDES \cdot RDES^{AV}\\
 \end{align*}
-
+\newpage
+\fancyfoot[RE,LO]{Entrega 2}
 \subsection{Corrida de Prueba}
 Corrida de prueba del archivo tp2.mod con el software GLPK.\\
 
@@ -311,7 +312,7 @@ Objective:   $Z    =   18971019.9    (MAXimum) $
  
  \begin{tabular}{| l  l  l  r  r  c  r |}
     \hline
-    No Row &   name &     St &     Activity &       Lower bound &     Upper bound &      Marginal  \\ \hline
+    No  &  Row name &     St &     Activity &       Lower bound &     Upper bound &      Marginal  \\ \hline
     \hline
       1 &   Z &              B &       \$18971019.9 &               &			&		 \\ 
       2 &   inProduccionNL &         NS &               0 &              -0 &               = &         725.539  \\ 
@@ -356,11 +357,10 @@ Objective:   $Z    =   18971019.9    (MAXimum) $
        \end{tabular}
 \end{flushleft}%\end{center}
 
-
 \begin{center}
   \begin{tabular}{| l  l  l  r  r  c  r |}
     \hline
-    No. Column &   name &    St &     Activity &       Lower bound &     Upper bound &      Marginal 	\\ \hline
+    No. &  Column name &    St &     Activity &       Lower bound &     Upper bound &      Marginal 	\\ \hline
     \hline
       1 &   C1 &             B &            20000 &               0 &                &		\\
       2 &   C2 &             B &            25000 &               0 &                &		\\ \hline                 
@@ -407,8 +407,30 @@ Objective:   $Z    =   18971019.9    (MAXimum) $
 \hline
        \end{tabular}
 \end{center}
-
 \newpage
+
+\begin{verbatim}
+Karush-Kuhn-Tucker optimality conditions:
+
+KKT.PE: max.abs.err. = 9.31e-10 on row 1
+        max.rel.err. = 1.82e-12 on row 4
+        High quality
+
+KKT.PB: max.abs.err. = 1.18e-25 on column 6
+        max.rel.err. = 1.18e-25 on column 6
+        High quality
+
+KKT.DE: max.abs.err. = 4.55e-13 on column 5
+        max.rel.err. = 4.55e-13 on column 5
+        High quality
+
+KKT.DB: max.abs.err. = 7.56e-13 on column 31
+        max.rel.err. = 7.56e-13 on column 31
+        High quality
+
+\end{verbatim}
+
+
 \subsection{An\'alisis de los Resultados}
 
 El funcional obtenido es $Z = \$18971019,9$, aproximadamente 19 millones de pesos por d\'ia en ventas. Si nos fijamos en los costos unitarios por producto final de los barriles, vemos que esta cifra puede ser v\'alida, ya que se procesan decenas de miles de barriles por d\'ia, a un promedio de \$440 por barril, aunque con gran diferencia entre el de mayor valor (\$700) y el de menor (\$150).
@@ -417,6 +439,7 @@ El funcional obtenido es $Z = \$18971019,9$, aproximadamente 19 millones de peso
 Se puede observar en la primer tabla la utilizaci\'on plena del Crudo1 como materia prima, mientras que del Crudo 2 tenemos un sobrante del 16\%. Esto se debe a que s\'olo es posible obtener el Aceite pesado, necesario para la producci\'on de Combustible para Aviones o Fueloil (m\'as al respecto a continuaci\'on), por medio de la destlaci\'on del crudo de primer tipo. Por lo tanto, para generar esas ganancias se fuerza su destilaci\'on. Esto puede verse en el valor marginal de la materia prima, lo cual nos indica que tener disponible 1 barril extra de Crudo tipo 1, implicar\'ia un incremento de \$3 en el funcional.
 No se consigue el uso total del crudo de tipo 2 debido a la saturaci\'on de la capacidad de destilaci\'on diaria.
 Viendo que dicho m\'aximo de destilaci\'on fue alcanzado, su costo marginal es de \$422.9, es decir, aumentar la capacidad de destilaci\'o en 1 barril, implicar\'ia un incremento en el funcional de \$422.9. 
+\\
 \\
 En el caso del Reformado, no se consigue saturar la producci\'on posible, quedando un restante de 2587 barriles (25\% de la capacidad total). Esto podr\'ia ser el resultado de un rendimiento no muy tentador por parte del proceso de reformado. Si bien se consiguen incrementos en el octanaje, en 2 de 3 casos el rendimiento por barril está cerca del 50\%, por lo que \'unicamente pasaron por el Reformado los barriles de Nafta Pesada obtenidos de la destilaci\'on, siendo los que mejor relaci\'on entre octanaje - rendimiento ten\'ian.
 \\
@@ -428,196 +451,62 @@ Pasando a los productos finales, podemos ver que la restricci\'on sobre el m\'in
 
 Con los precios de venta en mente, podemos ver que los de menor valor quedaron relegados a una producci\'on nula (o m\'inima por la presencia de restricciones), como fue el caso de la Nafta Super, o el Fueloil. De hecho, restricciones sobre un m\'inimo de producci\'on necesario en las naftas super, de 1 barril diario, provocar\'ia una p\'erdida de \$61 en el funcional, mientras que para el caso del Fueloil esta cifra asciende llamativamente a \$12370. Como se menciona con anterioridad, esto se debe a que la producci\'on de estos barriles consume materia prima que podr\'ia aplicarse a la producci\'on de barriles con mayor valor comercial. 
 \\
-\\
 
-En forma de resumen, podemos destacar que el funcional, al ser de m\'aximo, busc\'o la mayor producci\'on posible del producto mas valioso comercialmente, la nafta premium, y s\'olo se obtuvo producciones de otro tipo para aprovechar materia prima (o sub-productos) sobrantes. En este problema, hacer mas estrictos los m\'inimos necesarios para cada producto, llevar\'ia a una p\'erdida de dinero por parte de la empresa. Para mejorar a\'un mas las potenciales ganancias, se deber\'ia incrementar la capacidad m\'axima de destilaci\'on diaria, as\'i como tambi\'en conseguir mayor cantidad de crudo de tipo 1 paqra su procesado. 
+En forma de resumen, podemos destacar que el funcional, al ser de m\'aximo, busc\'o la mayor producci\'on posible del producto mas valioso comercialmente, el combustible premium, y s\'olo se obtuvieron producciones de otro tipo para aprovechar materia prima (o sub-productos) sobrantes. En este problema, hacer mas estrictos los m\'inimos necesarios para cada producto, llevar\'ia a una p\'erdida de dinero por parte de la empresa.
+
+Para mejorar a\'un mas las potenciales ganancias, se deber\'ia incrementar la capacidad m\'axima de destilaci\'on diaria, as\'i como tambi\'en conseguir mayor cantidad de crudo de tipo 1 paqra su procesado. 
+
+\subsubsection{Porcentajes de recursos y valores finales}
+\vspace{1cm}
 
 \begin{center}
  \begin{tabular}{ l  r }
 	\hline
 	Consumo Crudo 1 			&	 100\% 	\\
-	Consumo Crudo 2 			& 	83.3\%	\\
+	Consumo Crudo 2 			& 	83.3\%	\\ \hline
 	Capacidad de Destilaci\'on Sobrante	&	   0\%	\\
-	Capacidad de Reformado Sobrante	&	
+	Capacidad de Reformado Sobrante	&	74.3\%	\\
+	Capacidad de Craqueado Sobrante	&	 100\%	\\ \hline
+	Nafta Liviana				& 	 5750 B/dia \\
+	Nafta Liviana para Premium		& 	 100\%	\\
+	Nafta Liviana para Super		& 	   0\%	\\
+	Nafta Liviana para Reformado		& 	   0\%	\\ \hline
+	Nafta Mediana 				& 	 10250 B/dia\\
+	Nafta Mediana para Premium		& 	 100\%	\\
+	Nafta Mediana para Super		& 	   0\%	\\
+	Nafta Mediana para Reformado		& 	   0\%	\\ \hline
+	Nafta Pesada 				&       8500 B/dia	\\
+	Nafta Pesada para Premium		&       12.8\%	\\
+	Nafta Pesada para Super			&  	   0\%	\\
+	Nafta Pesada para Reformado		&       87.2\%	\\ \hline
+	Aceite Liviano				&	4400 B/dia \\
+	Aceite Liviano para Aviones		& 	  100\%	\\
+	Aceite Liviano para Gasolina Craquada	& 	  0\%	\\
+	Aceite Liviano para Aceite Craqueado	& 	  0\%	\\
+	Aceite Liviano para Fueloil		& 	  0\%	\\ \hline
+	Aceite Pesado 				&	200 B/dia	\\
+	Aceite Pesado para Aviones		& 	  100\%	\\
+	Aceite Pesado para Gasolina Craqueada	& 	  0\%	\\
+	Aceite Pesado para Aceite Craqueado		& 	  0\%	\\
+	Aceite Pesado para Fueloil		& 	  0\%	\\ \hline
+	Residuo de Destilaci\'on		& 	5600 B/dia	\\ 
+	Residuo Destilaci\'on para Aviones	& 	91\%	\\ 
+	Residuo Destilaci\'on para Lubricante	& 	9\%	\\ 
+	Residuo Destilaci\'on para Fueloil	& 	0\%	\\ \hline
+	Gasolina Craqueada			&	0 B/dia	\\ \hline
+	Gasolina Reformada			&	3335.82 B/dia	\\ \hline
+	Gasolina Reformada para Nafta Premium  &	100\%	\\
+	Gasolina Reformada para Nafta Super	&	0\%	\\ \hline
+	Aceite Craqueado 			&	0 B/dia \\ \hline
+	Combustible Premium			&	20422.9 B/dia\\                
+	Combustible Super			& 	0 B/dia\\ 
+	Combustible Aviones 			&	11500 B/dia \\                
+	Fueloil 				 &      0 B/dia \\ 
+	Lubricante				 &      500 B/dia	\\        
+	
  \end{tabular}
 
 \end{center}
-
-
-
-
-
-\newpage
-\subsection{Anexo I: Modelizaci\'on con GLPK}
-
-\begin{verbatim}
-
-# Resolucion TP - Modelos y Optimizacion I - Catedra Sabados
-# Bogado Sebastian 	 - 91707
-# Garcia Marra Alejandro - 91516
-# Ejercicio 1 - 2da Entrega
-
-/* variables  */
-# Compra
-var C1 >= 0;
-var C2 >= 0;
-
-# Destilado
-var NL >= 0; 
-var NLREF >= 0; 
-var NLPR >= 0; 
-var NLSU >= 0;
-
-var NM >= 0; 
-var NMREF >= 0;
-var NMPR >= 0;  
-var NMSU >= 0; 
-
-var NP >= 0;  
-var NPREF >= 0; 
-var NPPR >= 0; 
-var NPSU >= 0;
-
-var AL >= 0;  
-var ALAV >= 0;  
-var ALGCRA >= 0;  
-var ALACRA >= 0;  
-var ALFO >= 0;  
-
-var AP >= 0;  
-var APAV >= 0;  
-var APGCRA >= 0;  
-var APACRA >= 0;  
-var APFO >= 0;  
-
-var RDES >= 0;
-var RDESAV >= 0;
-var RDESLU >= 0;
-var RDESFO >= 0; 
-
-# Reformado
-var GREF >= 0;
-var GREFPR >= 0;
-var GREFSU >= 0;
-
-# Craqueo
-var GCRA >= 0;
-var GCRAPR >= 0;
-var GCRASU >= 0;
-
-var ACRA >= 0;
-var ACRAAV >= 0;
-var ACRAFO >= 0;
-
-# Ventas
-var PR >= 0;
-var SU >= 0;
-var AV >= 0;
-var FO >= 0;
-var LU >= 0;
-
-/* Funcional */
-maximize Z: 700 * PR + 600 * SU + 400 * AV + 350 * FO + 150 * LU;
-
-
-/*** Ecuaciones ***/
-
-/*- Destilado -*/
-
-/*Nafta Liviana*/
-s.t. inProduccionNL:   NL = 0.1 * C1 + 0.15 * C2;
-s.t. outProduccionNL:  NL = NLREF + NLPR + NLSU;
-
-/*Nafta Mediana*/
-s.t. inProduccionNM:   NM = 0.2 * C1 + 0.25 * C2;
-s.t. outProduccionNM:  NM = NMREF + NMPR + NMSU;
-
-/*Nafta Pesada*/
-s.t. inProduccionNP:   NP = 0.2 * C1 + 0.18 * C2;
-s.t. outProduccionNP:  NP = NPREF + NPPR + NPSU;
-
-/*Aceite Liviano*/
-s.t. inProduccionAL:   AL = 0.12 * C1 + 0.08 * C2;
-s.t. outProduccionAL : AL = ALAV + ALGCRA + ALACRA + ALFO;
-
-/*Aceite Pesado*/
-s.t. inProduccionAP:   AP = 0.1 * C1;
-s.t. outProduccionAP:  AP = APAV + APGCRA + APACRA + APFO;
-
-/*Residuo Destilado*/
-s.t. inProduccionRDES:   RDES = 0.13 * C1 + 0.12 * C2;
-s.t. outProduccionRDES:  RDES = RDESAV + RDESLU + RDESFO;
-
-
-/*- Reformado -*/
-
-/*Gasolina Reformada*/
-s.t. inProduccionGREF:   GREF = 0.6 * NLREF + 0.52 * NMREF + 0.45 * NPREF;
-s.t. outProduccionGREF:  GREF = GREFPR + GREFSU;
-
-
-/*- Craqueo -*/
-
-/*Gasolina Craqueada*/
-s.t. inProduccionGCRA:   GCRA = 0.28 * ALGCRA + 0.2 * APGCRA;
-s.t. outProduccionGCRA:  GCRA = GCRAPR + GCRASU;
-
-
-/*Aceite Craqueado*/
-s.t. inProduccionACRA:   ACRA = 0.68 * ALACRA + 0.75 * APACRA;
-s.t. outProduccionACRA:  ACRA = ACRAAV + ACRAFO;
-
-/*Ventas*/
-s.t. finalPR: PR = NLPR + NMPR + NPPR + GCRAPR + GREFPR;
-s.t. finalSU: SU = NLSU + NMSU + NPSU + GCRASU + GREFSU;
-
-s.t. ALpartFO: 	 1.8 * FO = ALFO;
-s.t. APpartFO: 	   6 * FO = APFO;
-s.t. ACRApartFO: 4.5 * FO = ACRAFO;
-s.t. RDESpartFO:  18 * FO = RDESFO;
-
-s.t. finalAV: AV = ALAV + APAV + ACRAAV + RDESAV;
-s.t. finalLU: LU = RDESLU;
-
-
-/** Restricciones **/
-
-/* Destilaciones máximas de Crudos */
-s.t. dispCrudo1: C1 <= 20000;
-s.t. dispCrudo2: C2 <= 30000;
-s.t. maxDestilado: C1 + C2 <= 45000;
-
-/* Reformado maximo de naftas */
-s.t. maxReformado: NLREF + NMREF + NPREF <= 10000;
-
-/* Craqueo maximo de aceites */
-s.t. maxCraqueo: ALGCRA + ALACRA + APGCRA + APACRA <= 8000;
-
-/* Produccion de Lubricantes */
-s.t. minLub: LU >= 500;
-s.t. maxLub: LU <= 1000;
-
-/* Minimo inProduccion nafta Premium */
-s.t. minPremium: PR >= 0.4 * SU;
-
-/* Octanaje nafta Premium */
-s.t. minOCTPR: PR * 98 <= 100 * NLPR + 90 * NMPR + 80 * NPPR +
-			  + 115 * GCRAPR + 125* GREFPR;
-
-/* Octanaje nafta Super*/
-s.t. minOCTSU: SU * 95 <= 100 * NLSU + 90 * NMSU + 80 * NPSU +
-			  + 115 * GCRASU + 125* GREFSU;
-s.t. maxOCTSU: SU * 97.99 >= 100 * NLSU + 90 * NMSU + 80 * NPSU +
-			      + 115 * GCRASU + 125* GREFSU;
-
-/* Presion por cm^2 de Combustible para Aviones*/
-s.t. maxPresAV: AV  >= 1 * ALAV + 0.6 * APAV + 1.5 * ACRAAV +
-			+ 0.05 * RDESAV;
-
-end;
-
-\end{verbatim}
-
 
 \newpage
 
@@ -654,11 +543,278 @@ Determinar la cantidad de sidra de uno y otro tipo a producir de forma tal de ma
 \subsection{Ecuaciones}
 
 \begin{align*}
-0.25\ \cdot \ SD\ + \ 0.50\ \cdot \ SN \ &\leq \ 15  \\
- 0.50\ \cdot \ SD\ + \ 0.50\ \cdot \ SN \ &\leq \ 60  \\
- 0.25\ \cdot \ SD\ &\leq \ 15  \\
+0.5\ \cdot \ SN\ + \ 1\ \cdot \ SD \ &\leq \ 15  \\
+1\ \cdot \  SD\ +\ 1\ \cdot \ SN \ &\leq \ 60  \\
+ 0.5\ \cdot \ SN\ &\leq \ 15  \\
  SD \ &\geq\ 10  \\
  Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
 \end{align*}
+
+\subsection{Corrida de Prueba}
+Corrida de prueba del archivo ej2TP2.mod con el software GLPK.\\
+
+
+Problem:     ej2TP2 ;
+
+Rows:        5  ; Columns:     2 ; Non-zeros:   8 
+
+Status:      OPTIMAL 
+
+Objective:   $Z    =   350    (MAXimum) $
+
+\begin{center}
+ 
+ \begin{tabular}{| l  l  l  r  r  c  r |}
+  
+    \hline
+    No. &  	Row  name    &    St 	&     Activity &       Lower bound 	&     Upper bound	&      Marginal 	\\ \hline
+    \hline
+     1 	&	Z            &	B	&      350	&		    	&			&		\\                             
+     2 	&	verde        &	NU      &	15	&                   	&       	15      & 	40	\\
+     3 	&	rojas        &  B	&       20	&                   	&       	60 	&		\\
+     4 	&	amarillas    &  B      &        5      &                   	& 		15 	&		\\
+     5 	&	reqBar       &  NL     &       10      &      10           	&              	 	&	-25	\\ \hline
+      \hline
+    No.	& 	Column  name &    St 	&     Activity 	&       Lower bound 	&     Upper bound 	&      Marginal 	\\ \hline
+    \hline
+     1 &	SN           &	B	& 	10	&             0         &			&		\\      
+     2 &	SD           &	B       &      10      &	      0          &			&		\\     
+     \hline
+ \end{tabular}
+\end{center}
+
+\begin{verbatim}
+ Karush-Kuhn-Tucker optimality conditions:
+
+KKT.PE: max.abs.err. = 0.00e+00 on row 0
+        max.rel.err. = 0.00e+00 on row 0
+        High quality
+
+KKT.PB: max.abs.err. = 0.00e+00 on row 0
+        max.rel.err. = 0.00e+00 on row 0
+        High quality
+
+KKT.DE: max.abs.err. = 0.00e+00 on column 0
+        max.rel.err. = 0.00e+00 on column 0
+        High quality
+
+KKT.DB: max.abs.err. = 0.00e+00 on row 0
+        max.rel.err. = 0.00e+00 on row 0
+        High quality
+
+End of output
+
+\end{verbatim}
+
+\newpage
+
+\section{Anexo I: Modelizaci\'on Ejercicio 1 con GLPK}
+
+\begin{verbatim}
+# Resolucion TP - Modelos y Optimizacion I - Catedra Sabados
+# Bogado Sebastian 	 - 91707
+# Garcia Marra Alejandro - 91516
+# Ejercicio 1 - 2da Entrega
+
+			/* variables  */
+
+# Compra
+var C1 >= 0;
+var C2 >= 0;
+
+
+# Destilado
+var NL >= 0; 
+var NLREF >= 0; 
+var NLPR >= 0; 
+var NLSU >= 0;
+
+var NM >= 0; 
+var NMREF >= 0;
+var NMPR >= 0;  
+var NMSU >= 0; 
+
+var NP >= 0;  
+var NPREF >= 0; 
+var NPPR >= 0; 
+var NPSU >= 0;
+
+var AL >= 0;  
+var ALAV >= 0;  
+var ALGCRA >= 0;  
+var ALACRA >= 0;  
+var ALFO >= 0;  
+
+var AP >= 0;  
+var APAV >= 0;  
+var APGCRA >= 0;  
+var APACRA >= 0;  
+var APFO >= 0;  
+
+var RDES >= 0;
+var RDESAV >= 0;
+var RDESLU >= 0;
+var RDESFO >= 0; 
+
+
+# Reformado
+var GREF >= 0;
+var GREFPR >= 0;
+var GREFSU >= 0;
+
+
+# Craqueo
+var GCRA >= 0;
+var GCRAPR >= 0;
+var GCRASU >= 0;
+
+var ACRA >= 0;
+var ACRAAV >= 0;
+var ACRAFO >= 0;
+
+
+# Ventas
+
+var PR >= 0;
+var SU >= 0;
+var AV >= 0;
+var FO >= 0;
+var LU >= 0;
+
+/* Funcional */
+maximize Z: 700 * PR + 600 * SU + 400 * AV + 350 * FO + 150 * LU;
+
+			/*** Ecuaciones ***/
+
+/*- Destilado -*/
+
+/*Nafta Liviana*/
+s.t. inProduccionNL:   NL = 0.1 * C1 + 0.15 * C2;
+s.t. outProduccionNL:  NL = NLREF + NLPR + NLSU;
+
+/*Nafta Mediana*/
+s.t. inProduccionNM:   NM = 0.2 * C1 + 0.25 * C2;
+s.t. outProduccionNM:  NM = NMREF + NMPR + NMSU;
+
+/*Nafta Pesada*/
+s.t. inProduccionNP:   NP = 0.2 * C1 + 0.18 * C2;
+s.t. outProduccionNP:  NP = NPREF + NPPR + NPSU;
+
+/*Aceite Liviano*/
+s.t. inProduccionAL:   AL = 0.12 * C1 + 0.08 * C2;
+s.t. outProduccionAL : AL = ALAV + ALGCRA + ALACRA + ALFO;
+
+/*Aceite Pesado*/
+s.t. inProduccionAP:   AP = 0.1 * C1;
+s.t. outProduccionAP:  AP = APAV + APGCRA + APACRA + APFO;
+
+
+/*Residuo Destilado*/
+s.t. inProduccionRDES:   RDES = 0.13 * C1 + 0.12 * C2;
+s.t. outProduccionRDES:  RDES = RDESAV + RDESLU + RDESFO;
+
+
+/*- Reformado -*/
+
+/*Gasolina Reformada*/
+s.t. inProduccionGREF:   GREF = 0.6 * NLREF + 0.52 * NMREF + 0.45 * NPREF;
+s.t. outProduccionGREF:  GREF = GREFPR + GREFSU;
+
+
+/*- Craqueo -*/
+
+/*Gasolina Craqueada*/
+s.t. inProduccionGCRA:   GCRA = 0.28 * ALGCRA + 0.2 * APGCRA;
+s.t. outProduccionGCRA:  GCRA = GCRAPR + GCRASU;
+
+/*Aceite Craqueado*/
+s.t. inProduccionACRA:   ACRA = 0.68 * ALACRA + 0.75 * APACRA;
+s.t. outProduccionACRA:  ACRA = ACRAAV + ACRAFO;
+
+
+/*- Ventas -*/
+
+s.t. finalPR: PR = NLPR + NMPR + NPPR + GCRAPR + GREFPR;
+s.t. finalSU: SU = NLSU + NMSU + NPSU + GCRASU + GREFSU;
+
+s.t. ALpartFO: 	 1.8 * FO = ALFO;
+s.t. APpartFO: 	   6 * FO = APFO;
+s.t. ACRApartFO: 4.5 * FO = ACRAFO;
+s.t. RDESpartFO:  18 * FO = RDESFO;
+
+s.t. finalAV: AV = ALAV + APAV + ACRAAV + RDESAV;
+s.t. finalLU: LU = RDESLU;
+
+
+			/** Restricciones **/
+
+			
+/* Destilaciones máximas de Crudos */
+s.t. dispCrudo1: C1 <= 20000;
+s.t. dispCrudo2: C2 <= 30000;
+s.t. maxDestilado: C1 + C2 <= 45000;
+
+
+/* Reformado maximo de naftas */
+s.t. maxReformado: NLREF + NMREF + NPREF <= 10000;
+
+
+/* Craqueo maximo de aceites */
+s.t. maxCraqueo: ALGCRA + ALACRA + APGCRA + APACRA <= 8000;
+
+
+/* Produccion de Lubricantes */
+s.t. minLub: LU >= 500;
+s.t. maxLub: LU <= 1000;
+
+
+/* Minimo inProduccion nafta Premium */
+s.t. minPremium: PR >= 0.4 * SU;
+
+
+/* Octanaje nafta Premium */
+s.t. minOCTPR: PR * 98 <= 100 * NLPR + 90 * NMPR + 80 * NPPR +
+			  + 115 * GCRAPR + 125* GREFPR;
+
+/* Octanaje nafta Super*/
+s.t. minOCTSU: SU * 95 <= 100 * NLSU + 90 * NMSU + 80 * NPSU +
+			  + 115 * GCRASU + 125* GREFSU;
+s.t. maxOCTSU: SU * 97.99 >= 100 * NLSU + 90 * NMSU + 80 * NPSU +
+			      + 115 * GCRASU + 125* GREFSU;
+
+			      
+/* Presion por cm^2 de Combustible para Aviones*/
+s.t. maxPresAV: AV  >= 1 * ALAV + 0.6 * APAV + 1.5 * ACRAAV +
+			+ 0.05 * RDESAV;
+end;
+\end{verbatim}
+
+ \newpage
+
+\section{Anexo II: Modelizaci\'on Ejercicio 2 con GLPK}
+
+ \begin{verbatim}
+
+# Resolucion TP - Modelos y Optimizacion I - Catedra Sabados
+# Bogado Sebastian 	 - 91707
+# García Marra Alejandro - 91516
+# Ejercicio 2 - 2da Entrega
+
+/* variables  */
+var SN >= 0;
+var SD >= 0;
+
+/* funcional */
+maximize Z: 20* SN + 15 * SD;  
+
+/* Restricciones */
+s.t. verde: 0.5 * SN + 1 * SD <=15;
+s.t. rojas: 1 * SN + 1 * SD <= 60;
+s.t. amarillas: 0.5 * SN <= 15;
+s.t. reqBar: SD >= 10;
+
+ \end{verbatim}
+
+
 
 \end{document}

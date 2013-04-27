@@ -45,7 +45,7 @@
 \renewcommand{\headrulewidth}{0pt} % no line in header area
 \fancyfoot{} % clear all footer fields
 \fancyfoot[LE,RO]{\thepage}           % page number in "outer" position of footer line
-\fancyfoot[RE,LO]{Entrega 2} % other info in "inner" position of footer line
+\fancyfoot[RE,LO]{Entrega 1} % other info in "inner" position of footer line
 
 %\usepackage{multicolumn} 
 
@@ -295,7 +295,8 @@ SU \cdot 95 \ Oct \ &\leq OCTNL \cdot NL^{SU} + OCTNM \cdot NM^{SU} + \\
 AV \cdot 1 \ Kg/cm^{2} &\geq PRESAL \cdot AL^{AV} + PRESAP \cdot AP^{AV} + \\
 				& \ \ \ PRESACRA \cdot ACRA^{AV} + PRESRDES \cdot RDES^{AV}\\
 \end{align*}
-
+\newpage
+\fancyfoot[RE,LO]{Entrega 2}
 \subsection{Corrida de Prueba}
 Corrida de prueba del archivo tp2.mod con el software GLPK.\\
 
@@ -311,7 +312,7 @@ Objective:   $Z    =   18971019.9    (MAXimum) $
  
  \begin{tabular}{| l  l  l  r  r  c  r |}
     \hline
-    No Row &   name &     St &     Activity &       Lower bound &     Upper bound &      Marginal  \\ \hline
+    No  &  Row name &     St &     Activity &       Lower bound &     Upper bound &      Marginal  \\ \hline
     \hline
       1 &   Z &              B &       \$18971019.9 &               &			&		 \\ 
       2 &   inProduccionNL &         NS &               0 &              -0 &               = &         725.539  \\ 
@@ -356,11 +357,10 @@ Objective:   $Z    =   18971019.9    (MAXimum) $
        \end{tabular}
 \end{flushleft}%\end{center}
 
-
 \begin{center}
   \begin{tabular}{| l  l  l  r  r  c  r |}
     \hline
-    No. Column &   name &    St &     Activity &       Lower bound &     Upper bound &      Marginal 	\\ \hline
+    No. &  Column name &    St &     Activity &       Lower bound &     Upper bound &      Marginal 	\\ \hline
     \hline
       1 &   C1 &             B &            20000 &               0 &                &		\\
       2 &   C2 &             B &            25000 &               0 &                &		\\ \hline                 
@@ -407,8 +407,30 @@ Objective:   $Z    =   18971019.9    (MAXimum) $
 \hline
        \end{tabular}
 \end{center}
-
 \newpage
+
+\begin{verbatim}
+Karush-Kuhn-Tucker optimality conditions:
+
+KKT.PE: max.abs.err. = 9.31e-10 on row 1
+        max.rel.err. = 1.82e-12 on row 4
+        High quality
+
+KKT.PB: max.abs.err. = 1.18e-25 on column 6
+        max.rel.err. = 1.18e-25 on column 6
+        High quality
+
+KKT.DE: max.abs.err. = 4.55e-13 on column 5
+        max.rel.err. = 4.55e-13 on column 5
+        High quality
+
+KKT.DB: max.abs.err. = 7.56e-13 on column 31
+        max.rel.err. = 7.56e-13 on column 31
+        High quality
+
+\end{verbatim}
+
+
 \subsection{An\'alisis de los Resultados}
 
 El funcional obtenido es $Z = \$18971019,9$, aproximadamente 19 millones de pesos por d\'ia en ventas. Si nos fijamos en los costos unitarios por producto final de los barriles, vemos que esta cifra puede ser v\'alida, ya que se procesan decenas de miles de barriles por d\'ia, a un promedio de \$440 por barril, aunque con gran diferencia entre el de mayor valor (\$700) y el de menor (\$150).
@@ -417,6 +439,7 @@ El funcional obtenido es $Z = \$18971019,9$, aproximadamente 19 millones de peso
 Se puede observar en la primer tabla la utilizaci\'on plena del Crudo1 como materia prima, mientras que del Crudo 2 tenemos un sobrante del 16\%. Esto se debe a que s\'olo es posible obtener el Aceite pesado, necesario para la producci\'on de Combustible para Aviones o Fueloil (m\'as al respecto a continuaci\'on), por medio de la destlaci\'on del crudo de primer tipo. Por lo tanto, para generar esas ganancias se fuerza su destilaci\'on. Esto puede verse en el valor marginal de la materia prima, lo cual nos indica que tener disponible 1 barril extra de Crudo tipo 1, implicar\'ia un incremento de \$3 en el funcional.
 No se consigue el uso total del crudo de tipo 2 debido a la saturaci\'on de la capacidad de destilaci\'on diaria.
 Viendo que dicho m\'aximo de destilaci\'on fue alcanzado, su costo marginal es de \$422.9, es decir, aumentar la capacidad de destilaci\'o en 1 barril, implicar\'ia un incremento en el funcional de \$422.9. 
+\\
 \\
 En el caso del Reformado, no se consigue saturar la producci\'on posible, quedando un restante de 2587 barriles (25\% de la capacidad total). Esto podr\'ia ser el resultado de un rendimiento no muy tentador por parte del proceso de reformado. Si bien se consiguen incrementos en el octanaje, en 2 de 3 casos el rendimiento por barril está cerca del 50\%, por lo que \'unicamente pasaron por el Reformado los barriles de Nafta Pesada obtenidos de la destilaci\'on, siendo los que mejor relaci\'on entre octanaje - rendimiento ten\'ian.
 \\
@@ -432,6 +455,9 @@ Con los precios de venta en mente, podemos ver que los de menor valor quedaron r
 En forma de resumen, podemos destacar que el funcional, al ser de m\'aximo, busc\'o la mayor producci\'on posible del producto mas valioso comercialmente, el combustible premium, y s\'olo se obtuvieron producciones de otro tipo para aprovechar materia prima (o sub-productos) sobrantes. En este problema, hacer mas estrictos los m\'inimos necesarios para cada producto, llevar\'ia a una p\'erdida de dinero por parte de la empresa.
 
 Para mejorar a\'un mas las potenciales ganancias, se deber\'ia incrementar la capacidad m\'axima de destilaci\'on diaria, as\'i como tambi\'en conseguir mayor cantidad de crudo de tipo 1 paqra su procesado. 
+
+\subsubsection{Porcentajes de recursos y valores finales}
+\vspace{1cm}
 
 \begin{center}
  \begin{tabular}{ l  r }
@@ -482,12 +508,107 @@ Para mejorar a\'un mas las potenciales ganancias, se deber\'ia incrementar la ca
 
 \end{center}
 
+\newpage
+
+\section{Ejercicio Complementario}
+
+\subsection{An\'alisis del caso}
+
+Pepe desea fabricar sidra de manera artesanal para luego venderla a una cadena re locales gourmet. Para esto, cuenta con tres tipos distintos de manzanas como materia prima, a partir de las cuales se pueden obtener tanto sidra natural como sidra dulce. La diferencia entre una y otra surge de cambios en la proporci\'on de las diferentes manzanas utilizadas. 
+
+\subsection{Objetivo}
+
+Determinar la cantidad de sidra de uno y otro tipo a producir de forma tal de maximizar las ganancias que obtiene Pepe en un per\'iodo. (En este caso utilizaremos un per\'iodo de una semana, ya que lo consideramos razonable.)
+
+\subsection{Hip\'otesis}
+\begin{itemize}
+  \item{Dispone del dinero para comprar toda la materia prima necesaria}
+ \item{Dispone de tiempo suficiente para realizar toda la producci\'on indicada}
+ \item{No tiene stock previo}
+ \item{La cadena de locales comprar\'a toda la producc\'on obtenida}
+ \item{No hay p\'erdidas de materia prima en el proceso ni en el transporte}
+ \item{No hay p\'erdidas de producci\'on}
+ \item{Los precios son constantes dentro del per\'iodo.}
+\end{itemize}
+ 
+\subsection{Variables}
+
+ \subsubsection{Venta}
+\vspace{2mm}
+ $ SN = $ Litros/Sem de Sidra Natural
+ 
+ $ SD = $ Litros/Sem de Sidra Dulce
+ \vspace{2mm}
+ 
+\subsection{Ecuaciones}
+
+\begin{align*}
+0.5\ \cdot \ SN\ + \ 1\ \cdot \ SD \ &\leq \ 15  \\
+1\ \cdot \  SD\ +\ 1\ \cdot \ SN \ &\leq \ 60  \\
+ 0.5\ \cdot \ SN\ &\leq \ 15  \\
+ SD \ &\geq\ 10  \\
+ Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
+\end{align*}
+
+\subsection{Corrida de Prueba}
+Corrida de prueba del archivo ej2TP2.mod con el software GLPK.\\
 
 
+Problem:     ej2TP2 ;
 
+Rows:        5  ; Columns:     2 ; Non-zeros:   8 
+
+Status:      OPTIMAL 
+
+Objective:   $Z    =   350 \   (MAXimum) $
+
+\begin{center}
+ 
+ \begin{tabular}{| l  l  l  r  r  c  r |}
+  
+    \hline
+    No. &  	Row  name    &    St 	&     Activity &       Lower bound 	&     Upper bound	&      Marginal 	\\ \hline
+    \hline
+     1 	&	Z            &	B	&      350	&		    	&			&		\\                             
+     2 	&	verde        &	NU      &	15	&                   	&       	15      & 	40	\\
+     3 	&	rojas        &  B	&       20	&                   	&       	60 	&		\\
+     4 	&	amarillas    &  B      &        5      &                   	& 		15 	&		\\
+     5 	&	reqBar       &  NL     &       10      &      10           	&              	 	&	-25	\\ \hline
+      \hline
+    No.	& 	Column  name &    St 	&     Activity 	&       Lower bound 	&     Upper bound 	&      Marginal 	\\ \hline
+    \hlines
+     1 &	SN           &	B	& 	10	&             0         &			&		\\      
+     2 &	SD           &	B       &      10      &	      0          &			&		\\     
+     \hline
+ \end{tabular}
+\end{center}
+
+\begin{verbatim}
+ Karush-Kuhn-Tucker optimality conditions:
+
+KKT.PE: max.abs.err. = 0.00e+00 on row 0
+        max.rel.err. = 0.00e+00 on row 0
+        High quality
+
+KKT.PB: max.abs.err. = 0.00e+00 on row 0
+        max.rel.err. = 0.00e+00 on row 0
+        High quality
+
+KKT.DE: max.abs.err. = 0.00e+00 on column 0
+        max.rel.err. = 0.00e+00 on column 0
+        High quality
+
+KKT.DB: max.abs.err. = 0.00e+00 on row 0
+        max.rel.err. = 0.00e+00 on row 0
+        High quality
+
+End of output
+
+\end{verbatim}
 
 \newpage
-\subsection{Anexo I: Modelizaci\'on con GLPK}
+
+\section{Anexo I: Modelizaci\'on Ejercicio 1 con GLPK}
 
 \begin{verbatim}
 # Resolucion TP - Modelos y Optimizacion I - Catedra Sabados
@@ -534,8 +655,6 @@ var RDES >= 0;
 var RDESAV >= 0;
 var RDESLU >= 0;
 var RDESFO >= 0; 
-
-
 
 
 # Reformado
@@ -670,47 +789,32 @@ s.t. maxPresAV: AV  >= 1 * ALAV + 0.6 * APAV + 1.5 * ACRAAV +
 end;
 \end{verbatim}
 
+ \newpage
 
-\newpage
+\section{Anexo II: Modelizaci\'on Ejercicio 2 con GLPK}
 
-\section{Ejercicio Complementario}
+ \begin{verbatim}
 
-\subsection{An\'alisis del caso}
+# Resolucion TP - Modelos y Optimizacion I - Catedra Sabados
+# Bogado Sebastian 	 - 91707
+# García Marra Alejandro - 91516
+# Ejercicio 2 - 2da Entrega
 
-Pepe desea fabricar sidra de manera artesanal para luego venderla a una cadena re locales gourmet. Para esto, cuenta con tres tipos distintos de manzanas como materia prima, a partir de las cuales se pueden obtener tanto sidra natural como sidra dulce. La diferencia entre una y otra surge de cambios en la proporci\'on de las diferentes manzanas utilizadas. 
+/* variables  */
+var SN >= 0;
+var SD >= 0;
 
-\subsection{Objetivo}
+/* funcional */
+maximize Z: 20* SN + 15 * SD;  
 
-Determinar la cantidad de sidra de uno y otro tipo a producir de forma tal de maximizar las ganancias que obtiene Pepe en un per\'iodo. (En este caso utilizaremos un per\'iodo de una semana, ya que lo consideramos razonable.)
+/* Restricciones */
+s.t. verde: 0.5 * SN + 1 * SD <=15;
+s.t. rojas: 1 * SN + 1 * SD <= 60;
+s.t. amarillas: 0.5 * SN <= 15;
+s.t. reqBar: SD >= 10;
 
-\subsection{Hip\'otesis}
-\begin{itemize}
-  \item{Dispone del dinero para comprar toda la materia prima necesaria}
- \item{Dispone de tiempo suficiente para realizar toda la producci\'on indicada}
- \item{No tiene stock previo}
- \item{La cadena de locales comprar\'a toda la producc\'on obtenida}
- \item{No hay p\'erdidas de materia prima en el proceso ni en el transporte}
- \item{No hay p\'erdidas de producci\'on}
- \item{Los precios son constantes dentro del per\'iodo.}
-\end{itemize}
- 
-\subsection{Variables}
+ \end{verbatim}
 
- \subsubsection{Venta}
-\vspace{2mm}
- $ SN = $ Litros/Sem de Sidra Natural
- 
- $ SD = $ Litros/Sem de Sidra Dulce
- \vspace{2mm}
- 
-\subsection{Ecuaciones}
 
-\begin{align*}
-0.5\ \cdot \ SD\ + \ 1\ \cdot \ SN \ &\leq \ 15  \\
- SD\ +\ SN \ &\leq \ 60  \\
- 0.5\ \cdot \ SD\ &\leq \ 15  \\
- SD \ &\geq\ 10  \\
- Z_{MAX} &= 20 \ \$/L \cdot \ SN + 15 \ \$/L \cdot \ SD \\
-\end{align*}
 
 \end{document}
